@@ -27,10 +27,10 @@
     Making basic architecture wiht image preview (4 hours)
 
 # Week 3: 28.01.2017 - 03.02.2017
-1)
-2)
+1)  I had to use Iagemagick to edit pictures in php. It is a free php plugin specially for image manipulation. 
+2)  
 3)
-4)
+4)  ImageMagick installation and tutorial
 
 # Week 4: 04.02.2017 - 10.02.2017
 1)
