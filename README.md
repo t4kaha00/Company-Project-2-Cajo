@@ -27,16 +27,23 @@
     Making basic architecture wiht image preview (4 hours)
 
 # Week 3: 28.01.2017 - 03.02.2017
-1)  I had to use Iagemagick to edit pictures in php. It is a free php plugin specially for image manipulation. 
-2)  
-3)
+1)  I had to use Iagemagick to edit pictures in php. It is a free php plugin specially for image manipulation. This week there was a deadline for the demo of the other project that I am doing and one guy that I was working with couldn't continue with the project so I had to focus more on that project. Still I was able to make some improvements on this project. I have the basic portal working now where user can add photos of their choice to the website. The buttons for cropping, resizing and others are yet not working. I have written some code for the cropping functionality but it still has some errors. I will be able to look at it next week only.
+
+2)  Next week I will start implementing the cropping and resizing functionality.
+
+3)  The other project had to be the main focus this week. There was a deadline for the demo and one guy working with me had to leave the project. In this project I had problem uploading the image into the browser at first. It was due to I was using form inputs where I could have just written a function for click of the button.
+
 4)  ImageMagick installation and tutorial
+    image preview improvements (2 hours)
+	cropping functions (2 hours)
+	error with the  div I used as the cropping tool and 	fixes(3 hours)
 
 # Week 4: 04.02.2017 - 10.02.2017
-1)
+1)  Using the div element to get the cropped picture was getting really hard so I looked for another way to do it and I found JCrop. It is a library which we can import to our code and use the function for cropping the file. Now I just have to use it to replace the original picture with the cropped picture in the browser itself before sending it to the database.
 2)
 3)
-4)
+4)  Jcrop implementation (3 hours)
+
 
 # Week 5: 11.02.2017 - 17.02.2017
 1)
