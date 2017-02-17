@@ -39,14 +39,24 @@
 	error with the  div I used as the cropping tool and 	fixes(3 hours)
 
 # Week 4: 04.02.2017 - 10.02.2017
-1)  Using the div element to get the cropped picture was getting really hard so I looked for another way to do it and I found JCrop. It is a library which we can import to our code and use the function for cropping the file. Now I just have to use it to replace the original picture with the cropped picture in the browser itself before sending it to the database.
-2)
-3)
-4)  Jcrop implementation (3 hours)
+1) Using the div element to get the cropped picture was getting really hard so I looked for another way to do it and I found JCrop. It is a library which we can import to our code and use the function for cropping the file. Now I just have to use it to replace the original picture with the cropped picture in the browser itself before sending it to the database. The Jcrop function is confisuing and the version that I had imported says it is not compatible and I couldnot find a way to resolve it so without wasting further time I thought of doing it with the earlier version. When going through the normal approach with a division, I had trouble with using php in a javascript file so it gave me a lot of errors. The JQuery libraries that I imported had to be imported in the body part of the main index file. Otherwise the external js could not find the libraries at all. Showing the cropped file on the image div in browser itself is still having issues when loading. For some reason I am not able to call the javascript for the image source in the php file. 
 
+2) Finding a way to save the cropped file into the database.
+   Then finding a way to stick it into the image source instead of downloading. 
+
+3) Tried another way to do it using Jcrop. A lot of errors with importing libraries for Jcrop. External Javascript error with index.php. The js function had to be called inside the body tag instead of home tag. 
+
+4) Jcrop implementation (3 hours)
+   Importing error and incorrect version calling (2 hours)
+   Working with divisions again for croping (3 hours)
+   Linking with external javascript (3 hours)
 
 # Week 5: 11.02.2017 - 17.02.2017
-1)
-2)
-3)
-4)
+1) Continued to work on the saving of image cropping method. I was able to download the cropped image but it is still can't set the cropped part that user wants to keep. It is just showing blank picture instead of the cropped picture. 
+
+2) Moving on to Image resizing functionality
+
+3) Blank cropped picture, failing to combine with the cropped image. Error with calling js inside of php file. It doesnot recognize the javascript commands properly.
+
+4) combining and saving the cropped image (3 hours)
+   
