@@ -1,6 +1,5 @@
 <?php
 
-  $img_name = $_POST['img_name'];
   $crop_start_x = $_POST['crop_start_x'];
   $crop_start_y = $_POST['crop_start_y'];
   $crop_tool_width = $_POST['crop_tool_width'];
@@ -15,12 +14,22 @@
   $src_w = $src_x + $dst_w;
   $src_h = $src_y + $dst_h;
 
-  $dst_image = imagecreatetruecolor($dst_w,$dst_h);
-  $src_image = imagecreatefromjpeg("images/img_name");
+  $img = $_FILES['file']['name'];
+  $dst_image = imagecreatetruecolor($dst_w, $dst_h);
+  $src_image = imagecreatefromjpeg($img);
   imagecopyresampled($dst_image, $src_image,
                       $dst_x, $dst_y,
                       $src_x, $src_y,
                       $dst_w, $dst_h,
                       $src_w, $src_h);
-  imagejpeg($dst_image, "images/cropped.jpg");
- ?>
+                      echo $src_x;
+              imagejpeg($dst_image, "cropped.jpg", 90);
+              echo "\n Image cropped"
+  // $final_img = imagejpeg($dst_image, null, 90);
+  // echo "<script>";
+  // echo "$(document).ready(function(){";
+  // echo "$('#img_name').attr("src", $final_img);";
+  // echo "});";
+  // echo "</script>";
+
+  ?>
