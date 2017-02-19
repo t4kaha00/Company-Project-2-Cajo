@@ -3,7 +3,7 @@
 <head>
   <style>
   .image-full-div {
-    width: 70%;
+    width: 40%;
   }
   .image-full-div img {
     width: 100%;
@@ -12,14 +12,12 @@
   #crop_tool {
     background: rgba(255, 255, 255, 0.5);
     border: 1px dashed black;
-    width: 100px;
-    height: 100px;
     position: absolute;
     /*visibility: hidden;;*/
   }
-  #img_name {
+  /*#img_name {
     width: 100%;
-  }
+  }*/
 </style>
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
@@ -31,7 +29,7 @@
 <input type="file" name="file" accept="image/*" onchange="previewImage(event)"/>
 <br><br>
 <div class="image-full-div" >
-  <img id="img_name" name="img_name" />
+  <img id="img_name" src="card.jpg" name="img_name" />
   <div id="crop_tool"></div>
 </div>
 <br><br>
