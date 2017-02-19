@@ -12,7 +12,7 @@
 
 4)  Kickoff meeting and looking through the company slides for my tasks for the project (1 hour)
     Tutorials for php, server and database (2 hours)
-    Preparing all the documents before starting the project		(2 hours)
+    Preparing all the documents before starting the project (2 hours)
     Setting up server and database (2 hours)
     Downloading the project and installing (3 hours)
 
@@ -31,53 +31,38 @@
 
 2)  Next week I will start implementing the cropping and resizing functionality.
 
-<<<<<<< HEAD
 3) The other project had to be the main focus this week. There was a deadline for the demo and one guy working with me had to leave the project. In this project I had problem uploading the image into the browser at first. It was due to I was using form inputs where I could have just written a function for click of the button.
 
-4) ImageMagick installation and tutorial
-   image preview improvements (2 hours)
+4) image preview improvements (2 hours)
    cropping functions (2 hours)
-   error with the  div I used as the cropping tool and fixes(3      	hours)
-
-# Week 4: 04.02.2017 - 10.02.2017
-1)Using the div element to get the cropped picture was getting really hard so I looked for another way to do it and I found JCrop. It is a library which we can import to our code and use the function for cropping the file. Now I just have to use it to replace the original picture with the cropped picture in the browser itself before sending it to the database. The Jcrop function is confisuing and the version that I had imported says it is not compatible and I couldnot find a way to resolve it so without wasting further time I thought of doing it with the earlier version. When going through the normal approach with a division, I had trouble with using php in a javascript file so it gave me a lot of errors. The JQuery libraries that I imported had to be imported in the body part of the main index file. Otherwise the external js could not find the libraries at all. Showing the cropped file on the image div in browser itself is still having issues when loading. For some reason I am not able to call the javascript for the image source in the php file. 
-
-2) Finding a way to save the cropped file into the database.
-Then finding a way to stick it into the image source instead of downloading. 
-=======
-3)  The other project had to be the main focus this week. There was a deadline for the demo and one guy working with me had to leave the project. In this project I had problem uploading the image into the browser at first. It was due to I was using form inputs where I could have just written a function for click of the button.
-
-4)  ImageMagick installation and tutorial
-    image preview improvements (2 hours)
-	cropping functions (2 hours)
-	error with the  div I used as the cropping tool and 	fixes(3 hours)
+   error with the  div I used as the cropping tool and fixes (3 hours)
 
 # Week 4: 04.02.2017 - 10.02.2017
 1) Using the div element to get the cropped picture was getting really hard so I looked for another way to do it and I found JCrop. It is a library which we can import to our code and use the function for cropping the file. Now I just have to use it to replace the original picture with the cropped picture in the browser itself before sending it to the database. The Jcrop function is confisuing and the version that I had imported says it is not compatible and I couldnot find a way to resolve it so without wasting further time I thought of doing it with the earlier version. When going through the normal approach with a division, I had trouble with using php in a javascript file so it gave me a lot of errors. The JQuery libraries that I imported had to be imported in the body part of the main index file. Otherwise the external js could not find the libraries at all. Showing the cropped file on the image div in browser itself is still having issues when loading. For some reason I am not able to call the javascript for the image source in the php file. 
 
 2) Finding a way to save the cropped file into the database.
    Then finding a way to stick it into the image source instead of downloading. 
->>>>>>> 710d3213f795f7df8f4cb6a608250ed1eaaa3cc7
 
-3) Tried another way to do it using Jcrop. A lot of errors with importing libraries for Jcrop. External Javascript error with index.php. The js function had to be called inside the body tag instead of home tag. 
+3)  The other project had to be the main focus this week. There was a deadline for the demo and one guy working with me had to leave the project. In this project I had problem uploading the image into the browser at first. It was due to I was using form inputs where I could have just written a function for click of the button.
 
-4) Jcrop implementation (3 hours)
-<<<<<<< HEAD
-Importing error and incorrect version calling (2 hours)
-Working with divisions again for croping (3 hours)
-Linking with external javascript (3 hours)
-=======
-   Importing error and incorrect version calling (2 hours)
-   Working with divisions again for croping (3 hours)
-   Linking with external javascript (3 hours)
->>>>>>> 710d3213f795f7df8f4cb6a608250ed1eaaa3cc7
-
+4) image preview improvements (2 hours)
+   cropping functions (2 hours)
+   error with the  div I used as the cropping tool and 	fixes(3 hours)
+   
 # Week 5: 11.02.2017 - 17.02.2017
-1) Continued to work on the saving of image cropping method. I was able to download the cropped image but it is still can't set the cropped part that user wants to keep. It is just showing blank picture instead of the cropped picture. 
+1) Continued to work on the saving of image cropping method. I was able to download the cropped image but it is still can't set the cropped part that user wants to keep. It is just showing blank picture instead of the cropped picture. The division used for cropping the image is zooming the image automatically before cropping which is not entirely providing the needed result. It works fine when the browser is zoomed to 75%. I have not messed around with the css which is why I am finding it hard to get the reason for that. Also, the cropping works only when the name of the image segment is specified in the crop.php file. If I try to use the image name from the browser it shows blank picture. Although the width and height is captured, the picture is always dark. I have to find a way to connect the image div with the php code in crop.php.
 
 2) Moving on to Image resizing functionality
 
-3) Blank cropped picture, failing to combine with the cropped image. Error with calling js inside of php file. It doesnot recognize the javascript commands properly.
+3) Blank cropped picture, failing to combine with the cropped image. Error with calling js inside of php file. It doesnot recognize the javascript commands properly. The auto zooming is giving a hard time. It doesn't work properly when the browser is in 100% zoom. The cropped image is blank or black when the name is not specified.
 
 4) combining and saving the cropped image (3 hours)
-   
+   The zoom issue with the browser (3 hours)
+   specifying the image name for cropping (2.5 hours)
+
+# Week 6: 18.02.2017 - 24.02.2017
+1) What have you done so far (after the last report)?
+2) What are you going to do next?
+3) Is there something that prevents you?
+4) How many hours did you work
+ 
