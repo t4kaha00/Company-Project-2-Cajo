@@ -14,7 +14,7 @@
   $src_w = $src_x + $dst_w;
   $src_h = $src_y + $dst_h;
 
-  $img = $_FILES['img_name']['name'];
+  $img = $_FILES['file']['name'];
   $img_string = (string) $img;
   $cropped_img = "cropped.jpg";
   $dst_image = imagecreatetruecolor($dst_w, $dst_h);
@@ -24,6 +24,7 @@
                       $dst_x, $dst_y,
                       $src_x, $src_y,
                       $dst_w, $dst_h,
+                      // $dst_w, $dst_h);
                       $src_w, $src_h);
   imagejpeg($dst_image, $cropped_img, 90);
 

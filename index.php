@@ -4,6 +4,7 @@
   <style>
   .image-full-div {
     width: 40%;
+    background: red;
   }
   .image-full-div img {
     width: 100%;
@@ -26,15 +27,15 @@
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<input type="file" name="file" accept="image/*" onchange="previewImage(event)"/>
-<br><br>
 <div class="image-full-div" >
   <img id="img_name" src="card.jpg" name="img_name" />
   <div id="crop_tool"></div>
 </div>
+<input type="file" name="file" accept="image/*" onchange="previewImage(event)"/>
+<br><br>
 <br><br>
 <button id="crop_btn">Crop</button>
-<input type="button" value="Resize" id="button_resize" />
+<button id="button_resize">Resize</button>
 <input type="button" value="Convert to B&W" id="button_bw"/>
 <input type="button" value="Preview in 3D" id="button_3d"/>
 </body>
