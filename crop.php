@@ -14,11 +14,10 @@
   $src_w = $src_x + $dst_w;
   $src_h = $src_y + $dst_h;
 
-  $img = $_FILES['file']['name'];
-  $img_string = (string) $img;
   $cropped_img = "cropped.jpg";
   $dst_image = imagecreatetruecolor($dst_w, $dst_h);
   $src_image = imagecreatefromjpeg("card.jpg");
+  list($width, $height) = getimagesize($src_image);
 
   imagecopyresampled($dst_image, $src_image,
                       $dst_x, $dst_y,
@@ -26,7 +25,8 @@
                       $dst_w, $dst_h,
                       // $dst_w, $dst_h);
                       $src_w, $src_h);
-  imagejpeg($dst_image, $cropped_img, 90);
+                      // $width, $height);
+  imagejpeg($dst_image, $cropped_img);
 
   // echo "<script type="text/javascript">";
   // echo '$.post("index.js", {final_image: ' + $final_img + '});';

@@ -29,13 +29,20 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <div class="image-full-div" >
   <img id="img_name" src="card.jpg" name="img_name" />
+  <img id="img_name1" name="img_name" />
   <div id="crop_tool"></div>
 </div>
 <input type="file" name="file" accept="image/*" onchange="previewImage(event)"/>
 <br><br>
-<br><br>
 <button id="crop_btn">Crop</button>
+<br><br>
+<select id="option_resize">
+  <<option value="200">200 X 200</option>
+  <<option value="300">300 X 300</option>
+  <<option value="400">400 X 400</option>
+</select>
 <button id="button_resize">Resize</button>
+<br><br>
 <input type="button" value="Convert to B&W" id="button_bw"/>
 <input type="button" value="Preview in 3D" id="button_3d"/>
 </body>

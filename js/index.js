@@ -10,15 +10,13 @@ $(document).ready(function (){
     $("#crop_tool").draggable({containment: "parent"});
     $("#crop_btn").click(
       function(){
-        var img_full_div_top = $(".image-full-div").position().top;
-        var img_full_div_left = $(".image-full-div").position().left;
+        var img_full_div_top = parseInt($(".image-full-div").position().top);
+        var img_full_div_left = parseInt($(".image-full-div").position().left);
         var crop_tool_top = parseInt($("#crop_tool").position().top);
         var crop_tool_left = parseInt($("#crop_tool").position().left);
 
-        var crop_start_x = crop_tool_left;
-        //  - img_full_div_left;
-        var crop_start_y = crop_tool_top;
-        // - img_full_div_top;
+        var crop_start_x = crop_tool_left - img_full_div_left;
+        var crop_start_y = crop_tool_top - img_full_div_top;
 
         var crop_tool_width = parseInt($("#crop_tool").width());
         var crop_tool_height = parseInt($("#crop_tool").height());
@@ -33,6 +31,7 @@ $(document).ready(function (){
                 function(data){
                   // alert(data);
         });
+        $("#img_name1").attr("src", "cropped.jpg");
 
         // $.get("crop.php", function(data, status){
         //   var a = toString(data.cropped_img);
@@ -44,7 +43,15 @@ $(document).ready(function (){
       // $("#crop_btn").click();
     $("#button_resize").click(
         function(){
-          $.post("resize.php", function(data){});
+          var res = parseInt($("#option_resize").find(":selected").val());
+
+          $.post("resize.php",
+                  {res: res},
+                  function(data){});
+          // $.get("resize.php",
+          //       image: img,
+          //       function(data){});
+          $("#img_name").attr("src", "resized.jpg");
         }
     );
 });
