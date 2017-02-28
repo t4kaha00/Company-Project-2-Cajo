@@ -3,7 +3,7 @@
 <head>
   <style>
   .image-full-div {
-    width: 40%;
+    width: 60%;
     background: red;
   }
   .image-full-div img {
@@ -14,24 +14,21 @@
     background: rgba(255, 255, 255, 0.5);
     border: 1px dashed black;
     position: absolute;
-    /*visibility: hidden;;*/
   }
-  /*#img_name {
-    width: 100%;
-  }*/
 </style>
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
+  <script type="text/javascript" src="js/index.js"></script>
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <div class="image-full-div" >
   <img id="img_name" src="card.jpg" name="img_name" />
-  <img id="img_name1" name="img_name" />
   <div id="crop_tool"></div>
 </div>
+<img id="img_name1" name="img_name" />
 <input type="file" name="file" accept="image/*" onchange="previewImage(event)"/>
 <br><br>
 <button id="crop_btn">Crop</button>
@@ -43,6 +40,6 @@
 </select>
 <button id="button_resize">Resize</button>
 <br><br>
-<input type="button" value="Convert to B&W" id="button_bw"/>
+<button id="button_grayscale">Convert to B&W</button>
 <input type="button" value="Preview in 3D" id="button_3d"/>
 </body>

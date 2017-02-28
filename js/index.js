@@ -4,7 +4,7 @@ $(document).ready(function (){
     var img_full_div_width = $(".image-full-div").width();
     var img_full_div_height = $(".image-full-div").height();
 
-    $("#crop_tool").css("top", img_full_div_top + 20).css("left", img_full_div_left + 35);
+    $("#crop_tool").css("top", img_full_div_top).css("left", img_full_div_left);
     $("#crop_tool").css("width", img_full_div_width/3).css("height", img_full_div_height/3);
     $("#crop_tool").resizable({containment: "parent"});
     $("#crop_tool").draggable({containment: "parent"});
@@ -32,13 +32,6 @@ $(document).ready(function (){
                   // alert(data);
         });
         $("#img_name1").attr("src", "cropped.jpg");
-
-        // $.get("crop.php", function(data, status){
-        //   var a = toString(data.cropped_img);
-        //   alert(a);
-        //   $("#img_name").attr("src", a);
-        // });
-
       });
       // $("#crop_btn").click();
     $("#button_resize").click(
@@ -48,12 +41,14 @@ $(document).ready(function (){
           $.post("resize.php",
                   {res: res},
                   function(data){});
-          // $.get("resize.php",
-          //       image: img,
-          //       function(data){});
           $("#img_name").attr("src", "resized.jpg");
         }
     );
+    $("#button_grayscale").click(
+       function(){
+         $.post("grayscale.php");
+         $("#img_name1").attr("src", "grayscale.png");
+    });
 });
 
 function previewImage(event) {
