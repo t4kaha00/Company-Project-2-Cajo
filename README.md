@@ -61,8 +61,27 @@
    specifying the image name for cropping (2.5 hours)
 
 # Week 6: 18.02.2017 - 24.02.2017
+1) This week Lab assignments in school and tests made it difficult to work. No progress in the project this week
+2) Next week I am going to work on turning image into grayscale.
+3) Time issues
+4) No work this week.
+
+# Week 7: 25.02.2017 - 03.03.2017
+1) This week I worked on image resizing functionality. There are different options given in the browser for resizing. Example, 200x200, 300x300 and 400x400. User selects a value and image is resized according to that. First there was a problem getting value from the dropdown menu because the value that I set in the option was a string and the value that I needed for the image resizing function was an integer. There is still an issue that even if I set different values for the resizing function it always set the image to same size.
+
+2) 
+3) 
+4) resize function intro (2 hours)
+   implementation of resize method (3 hours) 
+   selected value from option getting issues (2 hours)
+
+# Week 8: 04.03.2017 - 10.03.2017
 1) What have you done so far (after the last report)?
 2) What are you going to do next?
 3) Is there something that prevents you?
 4) How many hours did you work
+	
+	
+ 
+
  
