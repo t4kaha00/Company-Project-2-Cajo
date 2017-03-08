@@ -1,5 +1,5 @@
 <?php
-  $img = imagecreatefrompng("test.png");
+  $img = imagecreatefromjpeg("card.jpg");
   imagefilter($img, IMG_FILTER_GRAYSCALE);
-  imagepng($img, "grayscale.png ");
+  imagejpeg($img, "grayscale.jpg");
  ?>

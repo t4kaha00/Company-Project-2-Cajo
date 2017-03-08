@@ -19,12 +19,14 @@
   $src_image = imagecreatefromjpeg("card.jpg");
   list($width, $height) = getimagesize($src_image);
 
+  imagecopyresized($dst_image, $src_image, 0,0,0,0, $dst_w, $dst_h, $width, $height);
+
   imagecopyresampled($dst_image, $src_image,
                       $dst_x, $dst_y,
                       $src_x, $src_y,
                       $dst_w, $dst_h,
-                      // $dst_w, $dst_h);
-                      $src_w, $src_h);
+                      $dst_w, $dst_h);
+                      // $src_w, $src_h);
                       // $width, $height);
   imagejpeg($dst_image, $cropped_img);
 
