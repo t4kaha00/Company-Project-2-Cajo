@@ -12,10 +12,10 @@ total hours worked : 60
 
 3)  Have to go through some tutorials before starting the project as I am not used to php. The website that the company asked me to get reference from is very vast.
 
-4)  Kickoff meeting and looking through the company slides for my tasks for the project (1 hour)
-    Tutorials for php, server and database (2 hours)
-    Preparing all the documents before starting the project (2 hours)
-    Setting up server and database (2 hours)
+4)  Kickoff meeting and looking through the company slides for my tasks for the project (1 hour),
+    Tutorials for php, server and database (2 hours),
+    Preparing all the documents before starting the project (2 hours),
+    Setting up server and database (2 hours),
     Downloading the project and installing (3 hours)
 
 # Week 2: 21.01.2017 - 27.01.2017
@@ -25,7 +25,7 @@ total hours worked : 60
 
 3)  There was a misunderstanding with the company that I am doing this project with. According to the presentation that they sent me it said that they are going to use the commercially available website Opencart but later when I inquired exactly what they needed it turned out that they'll use the website once I finished my part of the project.
 
-4)  understanding the architecture of opencart (3 hours)
+4)  understanding the architecture of opencart (3 hours),
     Making basic architecture wiht image preview (4 hours)
 
 # Week 3: 28.01.2017 - 03.02.2017
@@ -35,8 +35,8 @@ total hours worked : 60
 
 3) The other project had to be the main focus this week. There was a deadline for the demo and one guy working with me had to leave the project. In this project I had problem uploading the image into the browser at first. It was due to I was using form inputs where I could have just written a function for click of the button.
 
-4) image preview improvements (2 hours)
-   cropping functions (2 hours)
+4) image preview improvements (2 hours),
+   cropping functions (2 hours),
    error with the  div I used as the cropping tool and fixes (3 hours)
 
 # Week 4: 04.02.2017 - 10.02.2017
@@ -47,8 +47,8 @@ total hours worked : 60
 
 3)  The other project had to be the main focus this week. There was a deadline for the demo and one guy working with me had to leave the project. In this project I had problem uploading the image into the browser at first. It was due to I was using form inputs where I could have just written a function for click of the button.
 
-4) image preview improvements (2 hours)
-   cropping functions (2 hours)
+4) image preview improvements (2 hours),
+   cropping functions (2 hours),
    error with the  div I used as the cropping tool and 	fixes(3 hours)
    
 # Week 5: 11.02.2017 - 17.02.2017
@@ -58,8 +58,8 @@ total hours worked : 60
 
 3) Blank cropped picture, failing to combine with the cropped image. Error with calling js inside of php file. It doesnot recognize the javascript commands properly. The auto zooming is giving a hard time. It doesn't work properly when the browser is in 100% zoom. The cropped image is blank or black when the name is not specified.
 
-4) combining and saving the cropped image (3 hours)
-   The zoom issue with the browser (3 hours)
+4) combining and saving the cropped image (3 hours),
+   The zoom issue with the browser (3 hours),
    specifying the image name for cropping (2.5 hours)
 
 # Week 6: 18.02.2017 - 24.02.2017
@@ -75,10 +75,10 @@ total hours worked : 60
 
 3) dropdown value gain issues. The colour of the image used created an issue. image cropping issues still, not giving the desired output.
    
-4) resize function intro (2 hours)
-   implementation of resize method (3 hours) 
-   selected value from option getting issues (2 hours)
-   grayscale image function (2 hours)
+4) resize function intro (2 hours),
+   implementation of resize method (3 hours) ,
+   selected value from option getting issues (2 hours),
+   grayscale image function (2 hours),
    resolving black and wsite image confusion (3 hours)
 
 # Week 8: 04.03.2017 - 10.03.2017
@@ -88,9 +88,9 @@ total hours worked : 60
 
 3) A new area was introduced and I had to start from basic for that watching tutorials and documentations.
 
-4) Three.js documentation (2 hours)
-   youtube tutorials for three.js (3 hours)
-   scene and mesh implementation (3 hours)
+4) Three.js documentation (2 hours),
+   youtube tutorials for three.js (3 hours),
+   scene and mesh implementation (3 hours),
    image control for texture ( 1 hour)
 
 # Week 8: 11.03.2017 - 17.03.2017
