@@ -1,6 +1,8 @@
 # Cajo
 # Company Oriented Project 2
 
+total hours worked : 60
+
 # Weekly Report By Harjit
 
 # Week 1: 17.01.2017 - 20.01.2017
@@ -67,16 +69,31 @@
 4) No work this week.
 
 # Week 7: 25.02.2017 - 03.03.2017
-1) This week I worked on image resizing functionality. There are different options given in the browser for resizing. Example, 200x200, 300x300 and 400x400. User selects a value and image is resized according to that. First there was a problem getting value from the dropdown menu because the value that I set in the option was a string and the value that I needed for the image resizing function was an integer. There is still an issue that even if I set different values for the resizing function it always set the image to same size.
+1) This week I worked on image resizing functionality. There are different options given in the browser for resizing. Example, 200x200, 300x300 and 400x400. User selects a value and image is resized according to that. First there was a problem getting value from the dropdown menu because the value that I set in the option was a string and the value that I needed for the image resizing function was an integer. There is still an issue that even if I set different values for the resizing function it always set the image to same size. Also this week I implemented the grayscale function for the image. It was not much problem or difficult but it took me quite a while because I was using a black and white image for image manipulation and the grayscale function even though it was working fine, I couldn't see it because the image was already in grayscale. This confused me and it took me a lot of time to figure it out. 
 
-2) 
-3) 
+2) I am going to start working on the 3D functionality for the image manipulation next week. I will need to watch tutorials and gain prior knowledge about three.js before implementing it because the company suggested I use this library but I have no idea how it works.
+
+3) dropdown value gain issues. The colour of the image used created an issue. image cropping issues still, not giving the desired output.
+   
 4) resize function intro (2 hours)
    implementation of resize method (3 hours) 
    selected value from option getting issues (2 hours)
+   grayscale image function (2 hours)
+   resolving black and wsite image confusion (3 hours)
 
 # Week 8: 04.03.2017 - 10.03.2017
-1) What have you done so far (after the last report)?
+1) This week I started work on the 3D image feature. I had to go through the documentation of three.js which is kind of new javascript library and I am not familiar with it yet. The tutorials gave me an idea where to start the work from. Then the documentation helped me implementing each function. First I was able to create a shape that had to be displayed on the canvas or scene as it is called in three.js. Then the shape or mesh needed a texture which I would use the image for. I first used the image on the home directory to put on the mesh. 
+
+2) The 3D image has to be further designed to make user able to move it around. I am going to work on it next week.
+
+3) A new area was introduced and I had to start from basic for that watching tutorials and documentations.
+
+4) Three.js documentation (2 hours)
+   youtube tutorials for three.js (3 hours)
+   scene and mesh implementation (3 hours)
+   image control for texture ( 1 hour)
+
+# Week 8: 11.03.2017 - 17.03.2017
 2) What are you going to do next?
 3) Is there something that prevents you?
 4) How many hours did you work
