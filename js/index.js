@@ -49,6 +49,106 @@ $(document.ready(function (){
          $.post("grayscale.php");
          $("#img_name").attr("src", "grayscale.jpg");
     });
+    $("button_3d").click(
+      function () {
+        // Set the scene size.
+    		const WIDTH = window.innerWidth - 100;
+    		const HEIGHT = window.innerHeight - 100;
+
+    		// Set some camera attributes.
+    		const VIEW_ANGLE = 45;
+    		const ASPECT = WIDTH / HEIGHT;
+    		const NEAR = 0.1;
+    		const FAR = 10000;
+
+    		// Get the DOM element to attach to
+    		const container =
+    		document.querySelector('#img_name');
+
+    		// Create a WebGL renderer, camera
+    		// and a scene
+    		const renderer = new THREE.WebGLRenderer({antialias: true});
+    		const camera =
+    			new THREE.PerspectiveCamera(
+    				VIEW_ANGLE,
+    				ASPECT,
+    				NEAR,
+    				FAR
+    			);
+    			camera.position.set(5,5,0);
+    			// camera.lookAt(new THREE.Vector3(0,0,0));
+
+    		const scene = new THREE.Scene();
+
+    		// Add the camera to the scene.
+    		scene.add(camera);
+
+    		// Start the renderer.
+    		renderer.setSize(WIDTH, HEIGHT);
+
+    		// Attach the renderer-supplied
+    		// DOM element.
+    		container.appendChild(renderer.domElement);
+
+    		// create a point light
+        const pointLight =
+          new THREE.PointLight(0xFFFFFF);
+
+        // set its position
+        pointLight.position.x = 10;
+        pointLight.position.y = 50;
+        pointLight.position.z = 130;
+
+        // add to the scene
+        scene.add(pointLight);
+
+    		// Set up the sphere vars
+    		const RADIUS = 50;
+    		const SEGMENTS = 16;
+    		const RINGS = 16;
+
+    		// create the sphere's material
+        const sphereMaterial =
+          new THREE.MeshLambertMaterial({
+    				map: THREE.ImageUtils.loadTexture('card.jpg')
+    			});
+
+    		// Create a new mesh with
+    		// sphere geometry - we will cover
+    		// the sphereMaterial next!
+    		var sphere = new THREE.Mesh(
+    			new THREE.PlaneGeometry(
+    				200,// RADIUS,
+    				200),// SEGMENTS,
+    				// 300),// RINGS),
+    			sphereMaterial);
+    			// sphere.rotateX(Math.PI/2);
+
+    		// Move the Sphere back in Z so we
+    		// can see it.
+    		sphere.position.z = -300;
+
+    		// Finally, add the sphere to the scene.
+    		scene.add(sphere);
+
+    		// Draw!
+    		renderer.render(scene, camera);
+
+    		var controls = new THREE.OrbitControls( camera, renderec
+    		});
+
+    		function update () {
+    		// Draw!
+    		renderer.render(scene, camera);
+
+    		// Schedule the next frame.
+    		requestAnimationFrame(update);
+    		}
+
+    		// Schedule the first frame.
+    		requestAnimationFrame(update);
+      }
+    )
 });
 
 function previewImage(event) {
