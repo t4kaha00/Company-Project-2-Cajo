@@ -1,4 +1,4 @@
-$(document.ready(function (){
+$(document).ready(function (){
     var img_full_div_top = $(".image-full-div").position().top;
     var img_full_div_left = $(".image-full-div").position().left;
     var img_full_div_width = $(".image-full-div").width();
@@ -49,8 +49,14 @@ $(document.ready(function (){
          $.post("grayscale.php");
          $("#img_name").attr("src", "grayscale.jpg");
     });
-    $("button_3d").click(
+    $("#button_3d").click(
       function () {
+
+        var image = document.getElementById('img_name');
+        document.getElementById('crop_tool').style.visibility = "hidden";
+          document.getElementById('image-full-div').style.visibility = "hidden";
+        var img = image.src;
+        image.style.visibility = "hidden";
         // Set the scene size.
     		const WIDTH = window.innerWidth - 100;
     		const HEIGHT = window.innerHeight - 100;
@@ -63,7 +69,7 @@ $(document.ready(function (){
 
     		// Get the DOM element to attach to
     		const container =
-    		document.querySelector('#img_name');
+    		document.querySelector('#container');
 
     		// Create a WebGL renderer, camera
     		// and a scene
@@ -75,7 +81,7 @@ $(document.ready(function (){
     				NEAR,
     				FAR
     			);
-    			camera.position.set(5,5,0);
+    			camera.position.z = 1500;
     			// camera.lookAt(new THREE.Vector3(0,0,0));
 
     		const scene = new THREE.Scene();
@@ -86,21 +92,26 @@ $(document.ready(function (){
     		// Start the renderer.
     		renderer.setSize(WIDTH, HEIGHT);
 
+    		// Check if there is already an element
     		// Attach the renderer-supplied
     		// DOM element.
-    		container.appendChild(renderer.domElement);
+    		if (container.innerHTML != '') {
+    			container.replaceChild(renderer.domElement, container.childNodes[0]);
+    		} else {
+    			container.appendChild(renderer.domElement);
+    		}
 
     		// create a point light
-        const pointLight =
-          new THREE.PointLight(0xFFFFFF);
+    		const pointLight =
+    			new THREE.PointLight(0xFFFFFF);
 
-        // set its position
-        pointLight.position.x = 10;
-        pointLight.position.y = 50;
-        pointLight.position.z = 130;
+    		// set its position
+    		pointLight.position.x = 10;
+    		pointLight.position.y = 50;
+    		pointLight.position.z = 130;
 
-        // add to the scene
-        scene.add(pointLight);
+    		// add to the scene
+    		scene.add(pointLight);
 
     		// Set up the sphere vars
     		const RADIUS = 50;
@@ -108,21 +119,26 @@ $(document.ready(function (){
     		const RINGS = 16;
 
     		// create the sphere's material
-        const sphereMaterial =
-          new THREE.MeshLambertMaterial({
-    				map: THREE.ImageUtils.loadTexture('card.jpg')
+    		const sphereMaterial =
+    			new THREE.MeshLambertMaterial({
+    				map: THREE.ImageUtils.loadTexture(img)
     			});
+
+    			sphereMaterial.wrapS = sphereMaterial.wrapT = THREE.RepeatWrapping;
+    			// sphereMaterial.repeat.set(10,10);
 
     		// Create a new mesh with
     		// sphere geometry - we will cover
     		// the sphereMaterial next!
     		var sphere = new THREE.Mesh(
     			new THREE.PlaneGeometry(
-    				200,// RADIUS,
-    				200),// SEGMENTS,
+    				1000,// RADIUS,
+    				1000,
+    				10, 10),// SEGMENTS,
     				// 300),// RINGS),
     			sphereMaterial);
-    			// sphere.rotateX(Math.PI/2);
+    			sphere.rotation.y=-0.2
+    			sphere.rotation.x=Math.PI/4;
 
     		// Move the Sphere back in Z so we
     		// can see it.
@@ -134,7 +150,9 @@ $(document.ready(function (){
     		// Draw!
     		renderer.render(scene, camera);
 
-    		var controls = new THREE.OrbitControls( camera, renderec
+    		var controls = new THREE.OrbitControls( camera, renderer.domElement);
+    		controls.addEventListener('change', function() {
+    			renderer.render(scene, camera);
     		});
 
     		function update () {
@@ -147,16 +165,31 @@ $(document.ready(function (){
 
     		// Schedule the first frame.
     		requestAnimationFrame(update);
-      }
-    )
+    		// // sphere geometry
+    		// sphere.geometry
+    		//
+    		// // which contains the vertices and faces
+    		// sphere.geometry.vertices // an array
+    		// sphere.geometry.faces // also an array
+    		//
+    		// // its position
+    		// sphere.position // contains x, y and z
+    		// sphere.rotation // same
+    		// sphere.scale // ... same
+    		// // Changes to the vertices
+    		// sphere.geometry.verticesNeedUpdate = true;
+    		//
+    		// // Changes to the normals
+    		// sphere.geometry.normalsNeedUpdate = true;
+    	// }
+    });
 });
-
 function previewImage(event) {
   var reader = new FileReader();
   reader.onload = function() {
       var output = document.getElementById('img_name');
       output.src = reader.result;
-  }
+  };
 
   reader.readAsDataURL(event.target.files[0]);
 };

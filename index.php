@@ -4,7 +4,7 @@
   <style>
   .image-full-div {
     width: 60%;
-    background: red;
+    /*background: red;*/
   }
   .image-full-div img {
     width: 100%;
@@ -17,20 +17,20 @@
   }
 </style>
 <script src="js/jquery.min.js"></script>
+<script src="js/three.min.js"></script>
+<script src="js/OrbitControls.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-  <script src="build/three.min.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <div class="image-full-div" >
-    <img id="img_name" src="card.jpg" name="img_name" />
+  <div id="container"></div>
+  <div class="image-full-div" id="image-full-div">
+    <img id="img_name" src="insert_img.jpg" name="img_name" />
     <div id="crop_tool"></div>
   </div>
-  <img id="img_name1" name="img_name" />
-  <input type="file" name="file" accept="image/*" onchange="previewImage(event)"/>
+  <input id="img_input" type="file" name="file" accept="image/*" onchange="previewImage(event)"/>
   <br><br>
   <button id="crop_btn">Crop</button>
   <br><br>
