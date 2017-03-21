@@ -1,7 +1,7 @@
 # Cajo
 # Company Oriented Project 2
 
-total hours worked : 60
+total hours worked : 75
 
 # Weekly Report By Harjit
 
@@ -94,9 +94,16 @@ total hours worked : 60
    image control for texture ( 1 hour)
 
 # Week 8: 11.03.2017 - 17.03.2017
-2) What are you going to do next?
-3) Is there something that prevents you?
-4) How many hours did you work
+1) The image from the input was really difficult to insert into texture at first. The src value had to be converted into dataURL to be displayed inside the canvas. Then once it was appended to the container div, the user may change the picture again and I was using appendChild for inserting the canvas which would make a new canvas everytime the user clicked the button. It had to be replaced everytime when the user changes the picture. 
+
+2) Making the crop feature smooth.
+3) The crop feature has some problems. It doesnot crop with exact starting point, height and width.
+4) Inserting image from local to the mesh manual (2 hours)
+   Inserting the uploaded image to the mesh texture (4 hours)
+   Wrapping the plane with the image and making it repeat           	(3 hours)
+   Replacement of canvas each time the user changes the picture 	(3 hours)
+   Orbit contol for 3D viewing (3 hours)
+   
 	
 	
  
