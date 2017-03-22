@@ -4,15 +4,40 @@ $(document).ready(function (){
     var img_full_div_width = $(".image-full-div").width();
     var img_full_div_height = $(".image-full-div").height();
 
-    $("#crop_tool").css("top", img_full_div_top).css("left", img_full_div_left);
-    $("#crop_tool").css("width", img_full_div_width/3).css("height", img_full_div_height/3);
+    $("#crop_tool").css("top", img_full_div_top + window.innerHeight*3/10 ).css("left", img_full_div_left + window.innerWidth/10);
+    $("#crop_tool").css("width", img_full_div_width).css("height", img_full_div_height);
+
     $("#crop_tool").resizable({containment: "parent"});
     $("#crop_tool").draggable({containment: "parent"});
-    $("#crop_tool").css('display','none');
 
-    var clicks = 0;
     var visible = function(){
-      $("#crop_tool").css('display','block');
+
+      //image to be cropped_img
+      var imageToCrop = $('#img_name').attr('src');
+      $('#img_modal').attr('src', imageToCrop);
+
+      // Get the modal
+      var modal = document.getElementById('myModal');
+
+      // // Get the button that opens the modal
+      // var btn = document.getElementById("crop_btn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      modal.style.display = "block";
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+          modal.style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+      }
     }
     var crop = function(){
 
@@ -38,171 +63,166 @@ $(document).ready(function (){
                   // alert(data);
         });
         $("#img_name").attr("src", "cropped.jpg");
-        $("#crop_tool").css('display','none');
+        // Get the modal
+        var modal = document.getElementById('myModal');
+        modal.style.display = "none";
       }
 
     $("#crop_btn").click(
       function(){
-        if (clicks == 0) {
+        if(checkFile()) {
           visible();
-          clicks++;
         } else {
-          crop();
-          clicks--;
+          alert("Please choose a picture! ");
         }
     });
+    $("#crop_btn_modal").click(
+      function() {
+        crop();
+      }
+    )
 
     $("#button_resize").click(
         function(){
-          var res = parseInt($("#option_resize").find(":selected").val());
+          if(checkFile()) {
+            var res = parseInt($("#option_resize").find(":selected").val());
 
-          $.post("resize.php",
-                  {res: res},
-                  function(data){});
-          $("#img_name").attr("src", "resized.jpg");
-        }
-    );
+            $.post("resize.php",
+                    {res: res},
+                    function(data){});
+            $("#img_name").attr("src", "resized.jpg");
+           } else {
+            alert("Please choose a picture! ");
+          }
+        });
     $("#button_grayscale").click(
        function(){
+         if(checkFile()) {
            var image = $("#img_name").attr('src');
            $.post("grayscale.php",
                  {image: image});
-         $("#img_name").attr("src", "grayscale.jpg");
+           $("#img_name").attr("src", "grayscale.jpg");
+         } else {
+           alert("Please choose a picture! ");
+         }
     });
     $("#button_3d").click(
       function () {
+        if(checkFile()) {
 
-        var image = document.getElementById('img_name');
-        // document.getElementById('crop_tool').style.visibility = "hidden";
-        // document.getElementById('image-full-div').css('display','none');
-        var img = image.src;
+                  var image = document.getElementById('img_name');
 
-        // Set the scene size.
-    		const WIDTH = window.innerWidth * 2/5;
-    		const HEIGHT = window.innerHeight * 1/2;
+                  var img = image.src;
+                  var img_width = image.width * 3;
+                  var img_height = image.height * 3;
 
-    		// Set some camera attributes.
-    		const VIEW_ANGLE = 45;
-    		const ASPECT = WIDTH / HEIGHT;
-    		const NEAR = 0.1;
-    		const FAR = 10000;
+                  // Set the scene size.
+              		const WIDTH = window.innerWidth * 2/5;
+              		const HEIGHT = window.innerHeight * 1/2;
 
-    		// Get the DOM element to attach to
-    		const container =
-    		document.querySelector('#container');
+              		// Set some camera attributes.
+              		const VIEW_ANGLE = 45;
+              		const ASPECT = WIDTH / HEIGHT;
+              		const NEAR = 0.1;
+              		const FAR = 20000;
 
-    		// Create a WebGL renderer, camera
-    		// and a scene
-    		const renderer = new THREE.WebGLRenderer({antialias: true});
-    		const camera =
-    			new THREE.PerspectiveCamera(
-    				VIEW_ANGLE,
-    				ASPECT,
-    				NEAR,
-    				FAR
-    			);
-    			camera.position.z = 1500;
-    			// camera.lookAt(new THREE.Vector3(0,0,0));
+              		// Get the DOM element to attach to
+              		const container =
+              		document.querySelector('#container');
 
-    		const scene = new THREE.Scene();
+              		// Create a WebGL renderer, camera
+              		// and a scene
+              		const renderer = new THREE.WebGLRenderer({antialias: true});
+              		const camera =
+              			new THREE.PerspectiveCamera(
+              				VIEW_ANGLE,
+              				ASPECT,
+              				NEAR,
+              				FAR
+              			);
 
-    		// Add the camera to the scene.
-    		scene.add(camera);
+              		const scene = new THREE.Scene();
 
-    		// Start the renderer.
-    		renderer.setSize(WIDTH, HEIGHT);
+              		// Add the camera to the scene.
+              		scene.add(camera);
+                  camera.position.set(0, 150, 1500);
+                  camera.lookAt(scene.position);
 
-    		// Check if there is already an element
-    		// Attach the renderer-supplied
-    		// DOM element.
-    		if (container.innerHTML != '') {
-    			container.replaceChild(renderer.domElement, container.childNodes[0]);
-    		} else {
-    			container.appendChild(renderer.domElement);
-    		}
+              		// Start the renderer.
+              		renderer.setSize(WIDTH, HEIGHT);
 
-    		// create a point light
-    		const pointLight =
-    			new THREE.PointLight(0xFFFFFF);
+              		// Check if there is already an element
+              		// Attach the renderer-supplied
+              		// DOM element.
+              		if (container.innerHTML != '') {
+              			container.replaceChild(renderer.domElement, container.childNodes[0]);
+              		} else {
+              			container.appendChild(renderer.domElement);
+              		}
 
-    		// set its position
-    		pointLight.position.x = 10;
-    		pointLight.position.y = 50;
-    		pointLight.position.z = 130;
+              		// create a point light
+              		const pointLight =
+              			new THREE.PointLight(0xFFFFFF);
 
-    		// add to the scene
-    		scene.add(pointLight);
+              		// set its position
+              		pointLight.position.x = 10;
+              		pointLight.position.y = 150;
+              		pointLight.position.z = 400;
 
-    		// Set up the sphere vars
-    		const RADIUS = 50;
-    		const SEGMENTS = 16;
-    		const RINGS = 16;
+              		// add to the scene
+              		scene.add(pointLight);
 
-    		// create the sphere's material
-    		const sphereMaterial =
-    			new THREE.MeshLambertMaterial({
-    				map: THREE.ImageUtils.loadTexture(img)
-    			});
+                  //create plane texture
+                  var planeTexture = new THREE.ImageUtils.loadTexture(img);
+                  planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
+                  // planeTexture.repeat.set(4,4);
 
-    			sphereMaterial.wrapS = sphereMaterial.wrapT = THREE.RepeatWrapping;
-    			// sphereMaterial.repeat.set(10,10);
+                  // create the plane's material
+              		var planeMaterial =
+              			new THREE.MeshLambertMaterial({
+              				map: planeTexture,
+                      side: THREE.DoubleSide
+              			});
 
-    		// Create a new mesh with
-    		// sphere geometry - we will cover
-    		// the sphereMaterial next!
-    		var sphere = new THREE.Mesh(
-    			new THREE.PlaneGeometry(
-    				1000,// RADIUS,
-    				1000,
-    				10, 10),// SEGMENTS,
-    				// 300),// RINGS),
-    			sphereMaterial);
-    			sphere.rotation.y=-0.2
-    			sphere.rotation.x=Math.PI/4;
+              		// Create a new mesh with
+              		// plane geometry - we will cover
+              		// the planeMaterial next!
+                  var planeGeometry = new THREE.PlaneGeometry(img_width, img_height, 10, 10);
+              		var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+              		plane.rotation.y = -0.5
+              		plane.rotation.x = Math.PI;
 
-    		// Move the Sphere back in Z so we
-    		// can see it.
-    		sphere.position.z = -300;
+              		// Move the plane back in Z so we
+              		// can see it.
+              		// plane.position.z = -300;
 
-    		// Finally, add the sphere to the scene.
-    		scene.add(sphere);
+              		// Finally, add the sphere to the scene.
+              		scene.add(plane);
 
-    		// Draw!
-    		renderer.render(scene, camera);
+              		// Draw!
+              		renderer.render(scene, camera);
 
-    		var controls = new THREE.OrbitControls( camera, renderer.domElement);
-    		controls.addEventListener('change', function() {
-    			renderer.render(scene, camera);
-    		});
+              		var controls = new THREE.OrbitControls( camera, renderer.domElement);
+              		controls.addEventListener('change', function() {
+              			renderer.render(scene, camera);
+              		});
 
-    		function update () {
-    		// Draw!
-    		renderer.render(scene, camera);
+              		function update () {
+              		// Draw!
+              		renderer.render(scene, camera);
 
-    		// Schedule the next frame.
-    		requestAnimationFrame(update);
-    		}
+              		// Schedule the next frame.
+              		requestAnimationFrame(update);
+              		}
 
-    		// Schedule the first frame.
-    		requestAnimationFrame(update);
-    		// // sphere geometry
-    		// sphere.geometry
-    		//
-    		// // which contains the vertices and faces
-    		// sphere.geometry.vertices // an array
-    		// sphere.geometry.faces // also an array
-    		//
-    		// // its position
-    		// sphere.position // contains x, y and z
-    		// sphere.rotation // same
-    		// sphere.scale // ... same
-    		// // Changes to the vertices
-    		// sphere.geometry.verticesNeedUpdate = true;
-    		//
-    		// // Changes to the normals
-    		// sphere.geometry.normalsNeedUpdate = true;
-    	// }
-      document.getElementById('image-full-div').style.display = 'none';
+              		// Schedule the first frame.
+              		requestAnimationFrame(update);
+
+                document.getElementById('img_name').style.display = 'none';
+        } else {
+          alert("Please choose a picture! ");
+        }
+
     });
 });
 
@@ -215,3 +235,7 @@ function previewImage(event) {
 
   reader.readAsDataURL(event.target.files[0]);
 };
+
+function checkFile(){
+  return $("#img_input").val()!= '';
+}
