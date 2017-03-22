@@ -8,8 +8,14 @@ $(document).ready(function (){
     $("#crop_tool").css("width", img_full_div_width/3).css("height", img_full_div_height/3);
     $("#crop_tool").resizable({containment: "parent"});
     $("#crop_tool").draggable({containment: "parent"});
-    $("#crop_btn").click(
-      function(){
+    $("#crop_tool").css('display','none');
+
+    var clicks = 0;
+    var visible = function(){
+      $("#crop_tool").css('display','block');
+    }
+    var crop = function(){
+
         var img_full_div_top = parseInt($(".image-full-div").position().top);
         var img_full_div_left = parseInt($(".image-full-div").position().left);
         var crop_tool_top = parseInt($("#crop_tool").position().top);
@@ -20,20 +26,32 @@ $(document).ready(function (){
 
         var crop_tool_width = parseInt($("#crop_tool").width());
         var crop_tool_height = parseInt($("#crop_tool").height());
+        var image = $("#img_name").attr('src');
 
-        // alert("crop tool left: " + crop_tool_left+ "\n img full div left: " +img_full_div_left +
-        // "\n crop tool width: " + crop_tool_width+ "\n crop tool height: " +crop_tool_height);
         $.post("crop.php",
                 {crop_start_x: crop_start_x,
                 crop_start_y: crop_start_y,
                 crop_tool_width: crop_tool_width,
-                crop_tool_height: crop_tool_height},
+                crop_tool_height: crop_tool_height,
+                image: image},
                 function(data){
                   // alert(data);
         });
-        $("#img_name1").attr("src", "cropped.jpg");
-      });
-      // $("#crop_btn").click();
+        $("#img_name").attr("src", "cropped.jpg");
+        $("#crop_tool").css('display','none');
+      }
+
+    $("#crop_btn").click(
+      function(){
+        if (clicks == 0) {
+          visible();
+          clicks++;
+        } else {
+          crop();
+          clicks--;
+        }
+    });
+
     $("#button_resize").click(
         function(){
           var res = parseInt($("#option_resize").find(":selected").val());
@@ -46,20 +64,22 @@ $(document).ready(function (){
     );
     $("#button_grayscale").click(
        function(){
-         $.post("grayscale.php");
+           var image = $("#img_name").attr('src');
+           $.post("grayscale.php",
+                 {image: image});
          $("#img_name").attr("src", "grayscale.jpg");
     });
     $("#button_3d").click(
       function () {
 
         var image = document.getElementById('img_name');
-        document.getElementById('crop_tool').style.visibility = "hidden";
-          document.getElementById('image-full-div').style.visibility = "hidden";
+        // document.getElementById('crop_tool').style.visibility = "hidden";
+        // document.getElementById('image-full-div').css('display','none');
         var img = image.src;
-        image.style.visibility = "hidden";
+
         // Set the scene size.
-    		const WIDTH = window.innerWidth - 100;
-    		const HEIGHT = window.innerHeight - 100;
+    		const WIDTH = window.innerWidth * 2/5;
+    		const HEIGHT = window.innerHeight * 1/2;
 
     		// Set some camera attributes.
     		const VIEW_ANGLE = 45;
@@ -182,8 +202,10 @@ $(document).ready(function (){
     		// // Changes to the normals
     		// sphere.geometry.normalsNeedUpdate = true;
     	// }
+      document.getElementById('image-full-div').style.display = 'none';
     });
 });
+
 function previewImage(event) {
   var reader = new FileReader();
   reader.onload = function() {

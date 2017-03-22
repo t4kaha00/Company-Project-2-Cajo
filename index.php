@@ -3,7 +3,7 @@
 <head>
   <style>
   .image-full-div {
-    width: 60%;
+    width: 30%;
     /*background: red;*/
   }
   .image-full-div img {
@@ -14,6 +14,9 @@
     background: rgba(255, 255, 255, 0.5);
     border: 1px dashed black;
     position: absolute;
+  }
+  #container {
+    width: 30%;
   }
 </style>
 <script src="js/jquery.min.js"></script>
