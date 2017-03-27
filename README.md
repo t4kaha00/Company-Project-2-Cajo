@@ -105,13 +105,15 @@ total hours worked : 83
    Orbit contol for 3D viewing (3 hours)
    
 # Week 9: 18.03.2017 - 24.03.2017
-1) The 3D image viewing is fully working now and updated itself with each change in input file. The crop function is not working as desired. I have added two functions to the crop button so that when the user clicks the button the first time, it shows the crop tool. Then, adjusting it as needed, the second click actually crops the image. This was very hard to figure out. Also, I had to make it in a loop so that if the crop tool is there it has to crop the image and if the crop tool is not there, first crop tool has to be shown to adjust the image
+1) The 3D image viewing is fully working now and updated itself with each change in input file. The crop function is not working as desired. I have added two functions to the crop button so that when the user clicks the button the first time, it shows the crop tool. Then, adjusting it as needed, the second click actually crops the image. This was very hard to figure out. Also, I had to make it in a loop so that if the crop tool is there it has to crop the image and if the crop tool is not there, first crop tool has to be shown to adjust the image. The cropping function is further modified to make a popup modal. First when the user clicks the crop button, the popup appears with the image and the crop tool. After adjusting the tool user can click the button on the modal to crop the picture. 
 
 2) 
 3) The multiple function to single button was difficult. Rendering image into a div had to be shown separate from the image element. The canvas and the image should not be visible at the same time.
 4) 3D canvas polishing (2 hours)
    crop button multiple functions (3 hours)
    visibility adjustment for image and canvas (3 hours)
+   3D further updates (3 hours)
+   popup modal (3 hours)
    
 	
 	
