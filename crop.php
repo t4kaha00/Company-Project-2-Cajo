@@ -4,6 +4,8 @@
   $crop_start_y = $_POST['crop_start_y'];
   $crop_tool_width = $_POST['crop_tool_width'];
   $crop_tool_height = $_POST['crop_tool_height'];
+  $image_width = $_POST['image_width'];
+  $image_height = $_POST['image_height'];
   $image = $_POST['image'];
 
   $dst_x = 0;

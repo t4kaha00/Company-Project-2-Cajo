@@ -24,7 +24,7 @@
     margin: 30px auto; /* 5% from the top and centered */
     padding: 15px;
     border: 1px solid #888;
-    width: 500px; /* Could be more or less, depending on screen size */
+    width: 520px; /* Could be more or less, depending on screen size */
     height: auto;
     vertical-align: middle;
 
@@ -49,7 +49,7 @@
     cursor: pointer;
 }
   .image-full-div {
-    width: 100%;
+    width: 500px;
     height: auto;
   }
   .image-full-div img {
@@ -60,7 +60,7 @@
     background: rgba(255, 255, 255, 0.1);
     width: 100px;
     height: 100px;
-    border: 1px dashed black;
+    /*border: 1px dashed black;*/
     position: absolute;
   }
   #container {
@@ -74,6 +74,7 @@
 <script src="js/three.min.js"></script>
 <script src="js/three.WindowResize.js"></script>
 <script src="js/OrbitControls.js"></script>
+<script src="js/TrackballControls.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -104,9 +105,11 @@
   <button id="crop_btn">Crop</button>
   <br><br>
   <select id="option_resize">
-    <<option value="200">200 X 200</option>
-    <<option value="300">300 X 300</option>
-    <<option value="400">400 X 400</option>
+    <option value="200">200 X 200</option>
+    <option value="300">300 X 300</option>
+    <option value="400">400 X 400</option>
+    <option value="1000">1000 X 1000</option>
+    <option value="2  000">2000 X 2000</option>
   </select>
   <button id="button_resize">Resize</button>
   <br><br>

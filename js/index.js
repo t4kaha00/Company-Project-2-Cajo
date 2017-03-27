@@ -58,16 +58,23 @@ $(document).ready(function (){
         var crop_tool_width = parseInt($("#crop_tool").width());
         var crop_tool_height = parseInt($("#crop_tool").height());
         var image = $("#img_name").attr('src');
+        var image_width = $('#img_modal').width();
+        var image_height = $('#img_modal').height();
+        var image_top = $('#img_modal').position().top;
+        var image_left = $('#img_modal').position().left;
 
         $.post("crop.php",
                 {crop_start_x: crop_start_x,
                 crop_start_y: crop_start_y,
                 crop_tool_width: crop_tool_width,
                 crop_tool_height: crop_tool_height,
+                image_width: image_width,
+                image_height: image_height,
                 image: image},
                 function(data){
                   // alert(data);
         });
+
         $("#img_name").attr("src", "cropped.jpg");
         // Get the modal
         var modal = document.getElementById('myModal');
@@ -92,10 +99,11 @@ $(document).ready(function (){
         function(){
           if(checkFile()) {
             var res = parseInt($("#option_resize").find(":selected").val());
+            var image = $("#img_name").attr('src');
 
             $.post("resize.php",
-                    {res: res},
-                    function(data){});
+                    {res: res,
+                    image: image});
             $("#img_name").attr("src", "resized.jpg");
            } else {
             alert("Please choose a picture! ");
@@ -121,7 +129,7 @@ $(document).ready(function (){
                   var img = image.src;
                   var img_width = image.width * 4 - 176;
                   var img_height = image.height * 4 - 152;
-                  alert(img_width + " " + img_height);
+                  // alert(img_width + " " + img_height);
 
                   // Set the scene size.
               		const WIDTH = window.innerWidth * 2/5;
@@ -212,12 +220,27 @@ $(document).ready(function (){
               			renderer.render(scene, camera);
               		});
 
+                  var track_controls = new THREE.TrackballControls(camera);
+                  track_controls.rotateSpeed = 1.0;
+                  track_controls.zoomSpeed = 1.2;
+                  track_controls.panSpeed = 0.8;
+
+                  track_controls.noZoom = false;
+                  track_controls.noPan = false;
+
+                  track_controls.staticMoving = true;
+                  track_controls.dynamicDampingfactor = 0.3;
+
+                  track_controls.keys = [65,83,68];
+                  track_controls.enabled = true;
+                  
               		function update () {
               		// Draw!
               		renderer.render(scene, camera);
 
               		// Schedule the next frame.
               		requestAnimationFrame(update);
+                  track_controls.update();
               		}
 
               		// Schedule the first frame.
@@ -244,8 +267,8 @@ function previewImage(event) {
       } else {
         output.width = 300;
       }
-      var ddd = document.getElementById('crop_btn');
-      ddd.click();
+      // var ddd = document.getElementById('crop_btn');
+      // ddd.click();
   };
 
   reader.readAsDataURL(event.target.files[0]);
