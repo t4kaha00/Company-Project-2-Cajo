@@ -8,27 +8,37 @@
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
+    right: 0;
+    bottom: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: black;
-    margin: 5% auto; /* 5% from the top and centered */
-    padding: 20px;
-    /*border: 1px solid #888;*/
-    width: 80%; /* Could be more or less, depending on screen size */
+    background-color: #FAFAFA;
+    margin: 30px auto; /* 5% from the top and centered */
+    padding: 15px;
+    border: 1px solid #888;
+    width: 500px; /* Could be more or less, depending on screen size */
+    height: auto;
+    vertical-align: middle;
+
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 
 /* The Close Button */
 .close {
-    color: white;
-    /*float: right;*/
+    color: black;
+    float: right;
     font-size: 28px;
     font-weight: bold;
 }
@@ -40,22 +50,24 @@
 }
   .image-full-div {
     width: 100%;
-    height: 100%;
-    background: red;
-    /*position: absolute;*/
+    height: auto;
   }
   .image-full-div img {
     width: 100%;
     height: 100%;
-
   }
   #crop_tool {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    width: 100px;
+    height: 100px;
     border: 1px dashed black;
     position: absolute;
   }
   #container {
     width: 30%;
+  }
+  #img_name {
+    height: auto;
   }
 </style>
 <script src="js/jquery.min.js"></script>
@@ -71,14 +83,14 @@
   <!-- The Modal -->
   <div id="myModal" class="modal">
     <!-- Modal content -->
-    <div class="modal-content">
+    <div class="modal-content" id="modal-content">
       <span class="close">&times;</span>
       <br><br>
       <div class="image-full-div" id="image-full-div">
-        <img id="img_modal"/>
+        <img id="img_modal" src="code_card.jpg"/>
         <div id="crop_tool"></div>
       </div>
-      <br><br>
+      <br>
       <button id="crop_btn_modal">Crop</button>
     </div>
   </div>

@@ -4,8 +4,8 @@ $(document).ready(function (){
     var img_full_div_width = $(".image-full-div").width();
     var img_full_div_height = $(".image-full-div").height();
 
-    $("#crop_tool").css("top", img_full_div_top + window.innerHeight*3/10 ).css("left", img_full_div_left + window.innerWidth/10);
-    $("#crop_tool").css("width", img_full_div_width).css("height", img_full_div_height);
+    $("#crop_tool").css("top", img_full_div_top + window.innerHeight/15 ).css("left", img_full_div_left + window.innerWidth/15);
+    // $("#crop_tool").css("width", img_full_div_width).css("height", img_full_div_height);
 
     $("#crop_tool").resizable({containment: "parent"});
     $("#crop_tool").draggable({containment: "parent"});
@@ -16,11 +16,17 @@ $(document).ready(function (){
       var imageToCrop = $('#img_name').attr('src');
       $('#img_modal').attr('src', imageToCrop);
 
+      var image = document.getElementById('img_modal');
+      var imageToCrop_width = image.width;
+      var imageToCrop_height = image.height;
+      var imageToCrop_ratio = imageToCrop_width/imageToCrop_height;
+      if (imageToCrop_ratio < (2/3)) {
+        image.height = 600;
+        $('#img_modal').attr('width', 'auto');
+      }
+
       // Get the modal
       var modal = document.getElementById('myModal');
-
-      // // Get the button that opens the modal
-      // var btn = document.getElementById("crop_btn");
 
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
@@ -113,8 +119,9 @@ $(document).ready(function (){
                   var image = document.getElementById('img_name');
 
                   var img = image.src;
-                  var img_width = image.width * 3;
-                  var img_height = image.height * 3;
+                  var img_width = image.width * 4 - 176;
+                  var img_height = image.height * 4 - 152;
+                  alert(img_width + " " + img_height);
 
                   // Set the scene size.
               		const WIDTH = window.innerWidth * 2/5;
@@ -174,8 +181,10 @@ $(document).ready(function (){
 
                   //create plane texture
                   var planeTexture = new THREE.ImageUtils.loadTexture(img);
-                  planeTexture.wrapS = planeTexture.wrapT = THREE.RepeatWrapping;
-                  // planeTexture.repeat.set(4,4);
+
+                  planeTexture.wrapS = THREE.MirroredRepeatWrapping;
+                  planeTexture.wrapT = THREE.MirroredRepeatWrapping;
+                  planeTexture.repeat.set(1,1);
 
                   // create the plane's material
               		var planeMaterial =
@@ -185,18 +194,14 @@ $(document).ready(function (){
               			});
 
               		// Create a new mesh with
-              		// plane geometry - we will cover
-              		// the planeMaterial next!
+              		// plane geometry
                   var planeGeometry = new THREE.PlaneGeometry(img_width, img_height, 10, 10);
               		var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-              		plane.rotation.y = -0.5
-              		plane.rotation.x = Math.PI;
+                  plane.overdraw = true;
+                  plane.position.set(25,0,0);
+                  plane.rotation.set(0,0,0);
 
-              		// Move the plane back in Z so we
-              		// can see it.
-              		// plane.position.z = -300;
-
-              		// Finally, add the sphere to the scene.
+              		// add the plne to the scene.
               		scene.add(plane);
 
               		// Draw!
@@ -231,6 +236,16 @@ function previewImage(event) {
   reader.onload = function() {
       var output = document.getElementById('img_name');
       output.src = reader.result;
+      var img_width = output.width;
+      var img_height = output.height;
+      if (img_height/img_width < (2/3)) {
+          output.width = 600;
+
+      } else {
+        output.width = 300;
+      }
+      var ddd = document.getElementById('crop_btn');
+      ddd.click();
   };
 
   reader.readAsDataURL(event.target.files[0]);
