@@ -1,7 +1,7 @@
 # Cajo
 # Company Oriented Project 2
 
-total hours worked : 83
+total hours worked : 96
 
 # Weekly Report By Harjit
 
@@ -100,20 +100,28 @@ total hours worked : 83
 3) The crop feature has some problems. It doesnot crop with exact starting point, height and width.
 4) Inserting image from local to the mesh manual (2 hours)
    Inserting the uploaded image to the mesh texture (4 hours)
-   Wrapping the plane with the image and making it repeat           	(3 hours)
-   Replacement of canvas each time the user changes the picture 	(3 hours)
+   Wrapping the plane with the image and making it repeat (3 hours)
+   Replacement of canvas each time the user changes the picture (3 hours)
    Orbit contol for 3D viewing (3 hours)
    
 # Week 9: 18.03.2017 - 24.03.2017
 1) The 3D image viewing is fully working now and updated itself with each change in input file. The crop function is not working as desired. I have added two functions to the crop button so that when the user clicks the button the first time, it shows the crop tool. Then, adjusting it as needed, the second click actually crops the image. This was very hard to figure out. Also, I had to make it in a loop so that if the crop tool is there it has to crop the image and if the crop tool is not there, first crop tool has to be shown to adjust the image. The cropping function is further modified to make a popup modal. First when the user clicks the crop button, the popup appears with the image and the crop tool. After adjusting the tool user can click the button on the modal to crop the picture. 
 
-2) 
-3) The multiple function to single button was difficult. Rendering image into a div had to be shown separate from the image element. The canvas and the image should not be visible at the same time.
+2) The image inside the 3D canvas comes inverted and it needs to be fixed. I am also going to add zooming in feature for the 3D canvas. The image is not fully wrapped into the plane so that needs to be added as well.
+3) The multiple function to single button was difficult. Rendering image into a div had to be shown separate from the image element. The canvas and the image should not be visible at the same time. The image is not wrapped around the plane properly. It is plain black at the back. 
 4) 3D canvas polishing (2 hours)
    crop button multiple functions (3 hours)
    visibility adjustment for image and canvas (3 hours)
    3D further updates (3 hours)
    popup modal (3 hours)
+   
+# Week 10: 25.03.2017 - 31.03.2017
+1) The image inverting prooblem is fixed by the right values with X,Y and Z for the plane. Adding Trackball controls allowed me to use the trackball from the mouse for zooming in and out. Adjusting the rotation speed and zoom speed is the additional options thats added. 
+2) 
+3) 
+4) image invert issue (3 hours)
+   Trackball.js understanding and insert (2 hours)
+   Zoom function (3 hours)
    
 	
 	
