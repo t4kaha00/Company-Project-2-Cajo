@@ -1,7 +1,8 @@
 <?php
+// Posted image source and related values
 $image = $_POST['image'];
 $res = $_POST['res'];
-$resized_img = "resized.jpg";
+$resized_img = "images/resized.jpg";
 
 // width and height of destination image and it is
 // going to be a square
@@ -19,4 +20,7 @@ imagecopyresized($dst_image, $src_image,
                     $dst_imagex, $dst_imagey, $src_imagex, $src_imagey
                   );
 imagejpeg($dst_image, $resized_img, 100);
+// time() for refreshing the page after completion
+echo $resized_img."?".time();
+exit;
 ?>

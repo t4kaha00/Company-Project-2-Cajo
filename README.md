@@ -1,7 +1,7 @@
 # Cajo
 # Company Oriented Project 2
 
-total hours worked : 96
+total hours worked : 104
 
 # Weekly Report By Harjit
 
@@ -116,12 +116,16 @@ total hours worked : 96
    popup modal (3 hours)
    
 # Week 10: 25.03.2017 - 31.03.2017
-1) The image inverting prooblem is fixed by the right values with X,Y and Z for the plane. Adding Trackball controls allowed me to use the trackball from the mouse for zooming in and out. Adjusting the rotation speed and zoom speed is the additional options thats added. 
-2) 
-3) 
+1) The image inverting prooblem is fixed by the right values with X,Y and Z for the plane. Adding Trackball controls allowed me to use the trackball from the mouse for zooming in and out. Adjusting the rotation speed and zoom speed is the additional options thats added. The cropping function was working but not fluently. The tool suggested by company didn't work for me for some reason so I decided to use another tool called Jcrop. First I had to go through the basics for this. It was very easy to add this as I didn't have to modify my code very much. The Jcrop first gave me the error when I tried to get the image source from crop.php to display in the main image container. I had to use GET method for that and apparently this method doesnot support large files. One option was to maximize the limit for the GET method so that I can pass the image source but I thoght it would harm other applications. So I made so that it saves the modified image in the server and then gets it from there once the page is refreshed. This finally helped my tackle the problem. The website works fine now. Some bugs present but can be fixed in no time.
+
+2) It is done now. Maybe improve designs if needed
+3) The Zoom was not working before, and the direction values was giving problems for inverting the plane. The crop function was not accurate which forced me to use a tool called Jcrop.
 4) image invert issue (3 hours)
    Trackball.js understanding and insert (2 hours)
    Zoom function (3 hours)
+   Jcrop initial understanding (3 hours)
+   implementation of Jcrop for cropping (3 hours)
+   modal design modifications final( 2 hours)
    
 	
 	

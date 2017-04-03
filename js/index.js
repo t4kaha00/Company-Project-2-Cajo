@@ -1,18 +1,24 @@
 $(document).ready(function (){
 
-
     var TARGET_W = 600;
     var TARGET_H = 300;
 
+    // visible() function to called for the first crop button click
     var visible = function(){
 
-      //image to be cropped_img
+      //image to be cropped
       var imageToCrop = $('#img_name').attr('src');
       $('#img_modal').attr('src', imageToCrop);
+      // destroy the Jcrop object to create a new one
+      	try {
+      		jcrop_api.destroy();
+      	} catch (e) {
+      		// object not defined
+      	}
+
       $('#img_modal').Jcrop({
-        aspectRatio: TARGET_W / TARGET_H,
-        setSelect:   [ 100, 100, TARGET_W, TARGET_H ],
-        onSelect: updateCoords
+        setSelect:   [ 50, 80, 300, 300 ], //setting the default area of crop tool
+        onSelect: updateCoords //updateCoords() updates the values in form from crop tool
       },function(){
           jcrop_api = this;
       });
@@ -21,10 +27,9 @@ $(document).ready(function (){
       var imageToCrop_width = imageToCrop.width;
       var imageToCrop_height = imageToCrop.height;
       var imageToCrop_ratio = imageToCrop_width/imageToCrop_height;
+      // To check if the length is really longer than width
       if (imageToCrop_ratio < (2/3)) {
-        // image.height = 300;
         $('#modal-content').attr('width', '600px');
-        // $('#image-full-div').attr('width', 'auto');
       } else {
         $('#modal-content').attr('width', '300px');
       }
@@ -50,9 +55,11 @@ $(document).ready(function (){
       }
     }
 
+    // crop() called when the crop button in the popup is clicked
+    // with final image to be cropped with final data
     var crop = function(){
-
-        var image = $("#img_name").attr('src');
+        // image details such as staring point (x & y), width, height and image source
+        var image = $("#img_modal").attr('src');
         var crop_start_x = $('#x').val();
         var crop_start_y = $('#y').val();
         var crop_tool_width = $('#w').val();
@@ -67,10 +74,10 @@ $(document).ready(function (){
                 targ_h : TARGET_H,
                 image : image},
                 function(data){
+                  //changes the main image once successful
                   $('#img_name').attr('src', data);
         });
 
-        // $("#img_name").attr("src", "cropped.jpg");
         // Get the modal
         var modal = document.getElementById('myModal');
         modal.style.display = "none";
@@ -78,6 +85,7 @@ $(document).ready(function (){
 
     $("#crop_btn").click(
       function(){
+        //Checking if the file is chosen
         if(checkFile()) {
           visible();
         } else {
@@ -98,8 +106,11 @@ $(document).ready(function (){
 
             $.post("resize.php",
                     {res: res,
-                    image: image});
-            $("#img_name").attr("src", "resized.jpg");
+                    image: image},
+                    function(data){
+                      //changes the main image once successful
+                      $('#img_name').attr('src', data);
+                    });
            } else {
             alert("Please choose a picture! ");
           }
@@ -109,8 +120,11 @@ $(document).ready(function (){
          if(checkFile()) {
            var image = $("#img_name").attr('src');
            $.post("grayscale.php",
-                 {image: image});
-           $("#img_name").attr("src", "grayscale.jpg");
+                 {image: image},
+                 function(data){
+                   //changes the main image once successful
+                   $('#img_name').attr('src', data);
+                 });
          } else {
            alert("Please choose a picture! ");
          }
@@ -124,7 +138,6 @@ $(document).ready(function (){
                   var img = image.src;
                   var img_width = image.width * 4 - 176;
                   var img_height = image.height * 4 - 152;
-                  // alert(img_width + " " + img_height);
 
                   // Set the scene size.
               		const WIDTH = window.innerWidth * 2/5;
@@ -256,23 +269,24 @@ function previewImage(event) {
       output.src = reader.result;
       var img_width = output.width;
       var img_height = output.height;
+      // For proper display of image
       if (img_height/img_width < (2/3)) {
           output.width = 600;
       } else {
         output.height = 400;
       }
-      // var ddd = document.getElementById('crop_btn');
-      // ddd.click();
   };
 
   reader.readAsDataURL(event.target.files[0]);
 };
 
 function checkFile(){
+  // returns true if something is uploaded
   return $("#img_input").val()!= '';
 }
 
 function updateCoords(c) {
+  // updateing the secret form valued with details from crop tool
   $('#x').val(c.x);
   $('#y').val(c.y);
   $('#w').val(c.w);
