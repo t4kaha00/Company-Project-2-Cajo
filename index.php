@@ -24,7 +24,7 @@
     margin: 30px auto; /* 5% from the top and centered */
     padding: 15px;
     border: 1px solid #888;
-    width: 520px; /* Could be more or less, depending on screen size */
+    width: auto; /* Could be more or less, depending on screen size */
     height: auto;
     vertical-align: middle;
 
@@ -48,16 +48,16 @@
     text-decoration: none;
     cursor: pointer;
 }
-  .image-full-div {
+  /*.image-full-div {
     width: 500px;
     height: auto;
-  }
+  }*/
   .image-full-div img {
     width: 100%;
     height: 100%;
   }
   #crop_tool {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.5);
     width: 100px;
     height: 100px;
     /*border: 1px dashed black;*/
@@ -66,37 +66,44 @@
   #container {
     width: 30%;
   }
-  #img_name {
+  /*#img_name {
+    width: auto;
     height: auto;
-  }
+  }*/
 </style>
 <script src="js/jquery.min.js"></script>
+<script src="js/jquery.Jcrop.js"></script>
+<script src="js/jquery.Jcrop.min.js"></script>
 <script src="js/three.min.js"></script>
 <script src="js/three.WindowResize.js"></script>
 <script src="js/OrbitControls.js"></script>
 <script src="js/TrackballControls.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 </head>
 <body>
-  <!-- The Modal -->
+  <!-- The Popup Modal -->
   <div id="myModal" class="modal">
     <!-- Modal content -->
     <div class="modal-content" id="modal-content">
       <span class="close">&times;</span>
       <br><br>
-      <div class="image-full-div" id="image-full-div">
-        <img id="img_modal" src="code_card.jpg"/>
-        <div id="crop_tool"></div>
-      </div>
-      <br>
-      <button id="crop_btn_modal">Crop</button>
+
+      <img id="img_modal"/>
+      <form>
+          <input type="hidden" id="x" name="x" />
+          <input type="hidden" id="y" name="y" />
+          <input type="hidden" id="w" name="w" />
+          <input type="hidden" id="h" name="h" />
+          <input type="hidden" id="photo_url" name="photo_url" />
+      </form>
     </div>
   </div>
-  <div id="container"></div>
 
+  <!-- For 3D canvas view -->
+  <div id="container"></div>
 
   <img id="img_name" src="insert_img.jpg" name="img_name" />
   <br>

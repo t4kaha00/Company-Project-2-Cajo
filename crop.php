@@ -1,11 +1,13 @@
 <?php
 
+  // Target siz
+  $targ_w = $_POST['targ_w'];
+  $targ_h = $_POST['targ_h'];
+
   $crop_start_x = $_POST['crop_start_x'];
   $crop_start_y = $_POST['crop_start_y'];
   $crop_tool_width = $_POST['crop_tool_width'];
   $crop_tool_height = $_POST['crop_tool_height'];
-  $image_width = $_POST['image_width'];
-  $image_height = $_POST['image_height'];
   $image = $_POST['image'];
 
   $dst_x = 0;
@@ -14,22 +16,21 @@
   $src_y = $crop_start_y;
   $dst_w = $crop_tool_width;
   $dst_h = $crop_tool_height;
-  $src_w = $src_x + $dst_w;
-  $src_h = $src_y + $dst_h;
 
   $cropped_img = "cropped.jpg";
-  $dst_image = imagecreatetruecolor($dst_w, $dst_h);
   $src_image = imagecreatefromjpeg($image);
-  list($width, $height) = getimagesize($src_image);
-
-  // imagecopyresized($dst_image, $src_image, 0,0,0,0, $dst_w, $dst_h, $width, $height);
+  $dst_image = imagecreatetruecolor( $targ_w, $targ_h );
 
   imagecopyresampled($dst_image, $src_image,
                       $dst_x, $dst_y,
                       $src_x, $src_y,
-                      $dst_w, $dst_h,
-                      // $dst_w, $dst_h);
-                      $src_w, $src_h);
-                      // $width, $height);
+                      $targ_w,$targ_h,
+                      $dst_w, $dst_h);
+
   imagejpeg($dst_image, $cropped_img);
+  imagejpeg($dst_image, $image, 90);
+
+  echo $image;
+  // echo '<img src="'.$cropped_img.'?'.time().'">';
+  exit;
   ?>

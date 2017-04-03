@@ -1,28 +1,32 @@
 $(document).ready(function (){
-    var img_full_div_top = $(".image-full-div").position().top;
-    var img_full_div_left = $(".image-full-div").position().left;
-    var img_full_div_width = $(".image-full-div").width();
-    var img_full_div_height = $(".image-full-div").height();
 
-    $("#crop_tool").css("top", img_full_div_top + window.innerHeight/15 ).css("left", img_full_div_left + window.innerWidth/15);
-    // $("#crop_tool").css("width", img_full_div_width).css("height", img_full_div_height);
 
-    $("#crop_tool").resizable({containment: "parent"});
-    $("#crop_tool").draggable({containment: "parent"});
+    var TARGET_W = 600;
+    var TARGET_H = 300;
 
     var visible = function(){
 
       //image to be cropped_img
       var imageToCrop = $('#img_name').attr('src');
       $('#img_modal').attr('src', imageToCrop);
+      $('#img_modal').Jcrop({
+        aspectRatio: TARGET_W / TARGET_H,
+        setSelect:   [ 100, 100, TARGET_W, TARGET_H ],
+        onSelect: updateCoords
+      },function(){
+          jcrop_api = this;
+      });
+      $('#photo_url').val(imageToCrop);
 
-      var image = document.getElementById('img_modal');
-      var imageToCrop_width = image.width;
-      var imageToCrop_height = image.height;
+      var imageToCrop_width = imageToCrop.width;
+      var imageToCrop_height = imageToCrop.height;
       var imageToCrop_ratio = imageToCrop_width/imageToCrop_height;
       if (imageToCrop_ratio < (2/3)) {
-        image.height = 600;
-        $('#img_modal').attr('width', 'auto');
+        // image.height = 300;
+        $('#modal-content').attr('width', '600px');
+        // $('#image-full-div').attr('width', 'auto');
+      } else {
+        $('#modal-content').attr('width', '300px');
       }
 
       // Get the modal
@@ -45,37 +49,28 @@ $(document).ready(function (){
           }
       }
     }
+
     var crop = function(){
 
-        var img_full_div_top = parseInt($(".image-full-div").position().top);
-        var img_full_div_left = parseInt($(".image-full-div").position().left);
-        var crop_tool_top = parseInt($("#crop_tool").position().top);
-        var crop_tool_left = parseInt($("#crop_tool").position().left);
-
-        var crop_start_x = crop_tool_left - img_full_div_left;
-        var crop_start_y = crop_tool_top - img_full_div_top;
-
-        var crop_tool_width = parseInt($("#crop_tool").width());
-        var crop_tool_height = parseInt($("#crop_tool").height());
         var image = $("#img_name").attr('src');
-        var image_width = $('#img_modal').width();
-        var image_height = $('#img_modal').height();
-        var image_top = $('#img_modal').position().top;
-        var image_left = $('#img_modal').position().left;
+        var crop_start_x = $('#x').val();
+        var crop_start_y = $('#y').val();
+        var crop_tool_width = $('#w').val();
+        var crop_tool_height = $('#h').val();
 
         $.post("crop.php",
                 {crop_start_x: crop_start_x,
                 crop_start_y: crop_start_y,
                 crop_tool_width: crop_tool_width,
                 crop_tool_height: crop_tool_height,
-                image_width: image_width,
-                image_height: image_height,
-                image: image},
+                targ_w : TARGET_W,
+                targ_h : TARGET_H,
+                image : image},
                 function(data){
-                  // alert(data);
+                  $('#img_name').attr('src', data);
         });
 
-        $("#img_name").attr("src", "cropped.jpg");
+        // $("#img_name").attr("src", "cropped.jpg");
         // Get the modal
         var modal = document.getElementById('myModal');
         modal.style.display = "none";
@@ -233,7 +228,7 @@ $(document).ready(function (){
 
                   track_controls.keys = [65,83,68];
                   track_controls.enabled = true;
-                  
+
               		function update () {
               		// Draw!
               		renderer.render(scene, camera);
@@ -263,9 +258,8 @@ function previewImage(event) {
       var img_height = output.height;
       if (img_height/img_width < (2/3)) {
           output.width = 600;
-
       } else {
-        output.width = 300;
+        output.height = 400;
       }
       // var ddd = document.getElementById('crop_btn');
       // ddd.click();
@@ -276,4 +270,11 @@ function previewImage(event) {
 
 function checkFile(){
   return $("#img_input").val()!= '';
+}
+
+function updateCoords(c) {
+  $('#x').val(c.x);
+  $('#y').val(c.y);
+  $('#w').val(c.w);
+  $('#h').val(c.h);
 }
