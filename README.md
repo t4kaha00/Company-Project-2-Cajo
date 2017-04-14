@@ -1,7 +1,7 @@
 # Cajo
 # Company Oriented Project 2
 
-total hours worked : 104
+total hours worked : 114
 
 # Weekly Report By Harjit
 
@@ -136,8 +136,8 @@ total hours worked : 104
 	-The main preview to be updated after every implementation 	 of function.
 	-The sequence of image manipulation should be maintained.
 	-The Plane in the 3D canvas needed to be changed to a Cube
-
-Well, the rotation problem is weird as the code works fine on my pc. The aspect ratio also is maintained every time. Juha had one specific photo that had the problem with maintaining the aspect ratio He sent me the photo having issues but even the photo work fine on my pc. The aspect ratio is maintained at all times. Now I have to work on the other issues. Well, I went through the initial document and I saw another feature needed to be implemented. It should allow only JPG images to get uploaded. It is done and the code checks throuh the name of the file and uploads only if the extension is jpg. The plane in the canvas is also changed to a box. I am confused if the width and height of the box should be according to the image or not so initially I have made it to be a cube where all sides are equal not depending on the aspect ratio of the image.
+	
+	Well, the rotation problem is weird as the code works fine on my pc. The aspect ratio also is maintained every time. Juha had one specific photo that had the problem with maintaining the aspect ratio He sent me the photo having issues but even the photo work fine on my pc. The aspect ratio is maintained at all times. Now I have to work on the other issues. Well, I went through the initial document and I saw another feature needed to be implemented. It should allow only JPG images to get uploaded. It is done and the code checks throuh the name of the file and uploads only if the extension is jpg. The plane in the canvas is also changed to a box. I am confused if the width and height of the box should be according to the image or not so initially I have made it to be a cube where all sides are equal not depending on the aspect ratio of the image.
 
 2) The sequence of the use of features should be maintained by allowing the edited image to be shown in the main preview.
 
@@ -145,5 +145,4 @@ Well, the rotation problem is weird as the code works fine on my pc. The aspect 
  
 4) BoxGeometry Issues (3 hours)
    Three.js library import and Boxgeometry solving(3 hours)
-   Validating function for the file to check if its JPG ( 4
-   hours)
+   Validating function for the file to check if its JPG ( 4 hours)
