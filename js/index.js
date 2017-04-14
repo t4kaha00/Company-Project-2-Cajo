@@ -1,8 +1,9 @@
-$(document).ready(function (){
+var img = new Image();
+var clicked = false;
 
+$(document).ready(function (){
     var TARGET_W = 600;
     var TARGET_H = 300;
-
     // visible() function to called for the first crop button click
     var visible = function(){
 
@@ -75,7 +76,8 @@ $(document).ready(function (){
                 image : image},
                 function(data){
                   //changes the main image once successful
-                  $('#img_name').attr('src', data);
+                  img.src = data;
+                  $('#img_name').attr('src', img.src);
         });
 
         // Get the modal
@@ -102,15 +104,13 @@ $(document).ready(function (){
         function(){
           if(checkFile()) {
             var res = parseInt($("#option_resize").find(":selected").val());
-            var image = $("#img_name").attr('src');
-            alert(image);
-
             $.post("resize.php",
                     {res: res,
-                    image: image},
+                    image: img.src},
                     function(data){
                       //changes the main image once successful
-                      $('#img_name').attr('src', data);
+                      img.src = data;
+                      $('#img_name').attr('src', img.src);
                     });
            } else {
             alert("Please choose a picture! ");
@@ -119,13 +119,13 @@ $(document).ready(function (){
     $("#button_grayscale").click(
        function(){
          if(checkFile()) {
-           var image = $("#img_name").attr('src');
-           alert(image);
+          //  var image = $("#img_name").attr('src');
            $.post("grayscale.php",
-                 {image: image},
+                 {image: img.src},
                  function(data){
                    //changes the main image once successful
-                   $('#img_name').attr('src', data);
+                   img.src = data;
+                   $('#img_name').attr('src', img.src);
                  });
          } else {
            alert("Please choose a picture! ");
@@ -134,12 +134,6 @@ $(document).ready(function (){
     $("#button_3d").click(
       function () {
         if(checkFile()) {
-
-                  var image = document.getElementById('img_name');
-
-                  var img = image.src;
-                  var img_width = image.width * 4 - 176;
-                  var img_height = image.height * 4 - 152;
 
                   // Set the scene size.
               		const WIDTH = window.innerWidth * 2/5;
@@ -170,8 +164,8 @@ $(document).ready(function (){
 
               		// Add the camera to the scene.
               		scene.add(camera);
-                  camera.position.set(0, 150, 400);
-                  camera.lookAt(scene.position);
+                  camera.position.set(0, 150, 2000);
+                  // camera.lookAt(scene.position);
 
               		// Start the renderer.
               		renderer.setSize(WIDTH, HEIGHT);
@@ -198,17 +192,18 @@ $(document).ready(function (){
               		scene.add(pointLight);
 
                   //create box texture
-                  var boxTexture = new THREE.TextureLoader().load(img);
+                  var boxTexture = new THREE.TextureLoader().load(img.src);
 
                   // create the box's material
               		var boxMaterial =
               			new THREE.MeshBasicMaterial({
               				map: boxTexture
+
               			});
 
               		// Create a new mesh with
               		// box geometry
-                  var boxGeometry = new THREE.BoxGeometry(200,200,200);
+                  var boxGeometry = new THREE.BoxGeometry(img.width, img.width, img.width);
               		var box = new THREE.Mesh(boxGeometry, boxMaterial);
 
               		// add the box to the scene.
@@ -225,32 +220,66 @@ $(document).ready(function (){
                   var track_controls = new THREE.TrackballControls(camera);
                   track_controls.rotateSpeed = 1.0;
                   track_controls.zoomSpeed = 1.2;
-                  track_controls.panSpeed = 0.8;
+                  track_controls.panSpeed = 0.3;
 
+                  track_controls.noRotate = false;
                   track_controls.noZoom = false;
                   track_controls.noPan = false;
 
-                  track_controls.staticMoving = true;
-                  track_controls.dynamicDampingfactor = 0.3;
+                  track_controls.staticMoving = false;
+                  track_controls.dynamicDampingfactor = 0.2;
+
+                  track_controls.minDistance = 800;
+                  track_controls.maxDistance = 3000;
 
                   track_controls.keys = [65,83,68];
                   track_controls.enabled = true;
 
               		function update () {
-              		// Draw!
-              		renderer.render(scene, camera);
+                		// Draw!
+                		renderer.render(scene, camera);
 
-              		// Schedule the next frame.
-              		requestAnimationFrame(update);
-                  track_controls.update();
+                		// Schedule the next frame.
+                		requestAnimationFrame(update);
+                    track_controls.update();
               		}
 
               		// Schedule the first frame.
               		requestAnimationFrame(update);
+                  if (clicked == false) {
+                    // Show canvas container and hide preview
+                      document.getElementById('img_name').style.display = 'none';
+                      // document.getElementById('container').style.display = 'block';
+                      container.appendChild(renderer.domElement);
 
-                document.getElementById('img_name').style.display = 'none';
-        } else {
-          alert("Please choose a picture! ");
+                      //Changing the text on a button to cancel the 3D view
+                      document.getElementById('button_3d').value = 'Cancel';
+
+                      // Disabling the rest of the buttons for viewing
+                      document.getElementById('crop_btn').disabled = true;
+                      document.getElementById('img_input').disabled = true;
+                      document.getElementById('button_resize').disabled = true;
+                      document.getElementById('button_grayscale').disabled = true;
+                      clicked = true; //reseting the clicked value
+
+                    } else if (clicked == true) {
+                      // hide canvas container and show preview
+                      document.getElementById('img_name').style.display = 'block';
+                      // document.getElementById('container').style.display = 'none';
+                      container.removeChild(renderer.domElement);
+
+                      document.getElementById('button_3d').value = 'Preview in 3D';
+
+                      //Enabling the buttons after 3D view is done
+                      document.getElementById('crop_btn').disabled = false;
+                      document.getElementById('img_input').disabled = false;
+                      document.getElementById('button_resize').disabled = false;
+                      document.getElementById('button_grayscale').disabled = false;
+                      clicked = false;
+
+                    }
+          } else {
+                  alert("Please choose a picture! ");
         }
 
     });
@@ -260,10 +289,13 @@ function previewImage(event) {
   // window.location.reload();
   var reader = new FileReader();
   reader.onload = function() {
-      var output = document.getElementById('img_name');
       //only JPEG files allowed
       if (validImage(reader.result) === true) {
-        output.src = reader.result;
+        img.src = reader.result;
+
+        var output = document.getElementById('img_name');
+        output.src = img.src;
+
         var img_width = output.width;
         var img_height = output.height;
         // For proper display of image

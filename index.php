@@ -111,10 +111,10 @@
   </div>
 
   <!-- initial file upload -->
-  <input id="img_input" type="file" name="file" accept="image/*" onchange="previewImage(event)"/>
+  <input id="img_input" class="not3D" type="file" name="file" accept="image/*" onchange="previewImage(event)"/>
   <br><br>
   <!-- button to get the popup -->
-  <button id="crop_btn">Crop</button>
+  <input type="button" value="Crop" class="not3D" id="crop_btn"/>
   <br><br>
   <!-- given options for resizing -->
   <select id="option_resize">
@@ -123,10 +123,10 @@
     <option value="400">400 X 400</option>
   </select>
   <!-- button to resize -->
-  <button id="button_resize">Resize</button>
+  <input type="button" value="Resize" class="not3D" id="button_resize"/>
   <br><br>
   <!-- button for grayscale (black & white) -->
-  <button id="button_grayscale">Convert to B&W</button>
+  <input type="button" value="Convert to B&W" class="not3D" id="button_grayscale"/>
   <!-- finally for the 3D -->
   <input type="button" value="Preview in 3D" id="button_3d"/>
   <br><br>

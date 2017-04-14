@@ -19,7 +19,7 @@
   $dst_w = $crop_tool_width;
   $dst_h = $crop_tool_height;
 
-  $cropped_img = "images/cropped.jpg";
+  $cropped_img = "images/edited.jpg";
   $image_quality = 90;
   $src_image = imagecreatefromjpeg($image);
   $dst_image = imagecreatetruecolor( $targ_w, $targ_h );

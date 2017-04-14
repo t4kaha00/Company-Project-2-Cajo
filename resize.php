@@ -2,7 +2,7 @@
 // Posted image source and related values
 $image = $_POST['image'];
 $res = $_POST['res'];
-$resized_img = "images/resized.jpg";
+$resized_img = "images/edited.jpg";
 
 // width and height of destination image and it is
 // going to be a square

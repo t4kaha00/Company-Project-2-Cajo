@@ -1,7 +1,7 @@
 <?php
   // posted image source
   $image = $_POST['image'];
-  $grayscale_img = "images/grayscale.jpg";
+  $grayscale_img = "images/edited.jpg";
 
   $img = imagecreatefromjpeg($image);
   imagefilter($img, IMG_FILTER_GRAYSCALE);
