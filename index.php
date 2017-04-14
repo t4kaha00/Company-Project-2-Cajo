@@ -80,6 +80,7 @@
 <script src="js/jquery.Jcrop.js"></script>
 <script src="js/jquery.Jcrop.min.js"></script>
 <script src="js/three.min.js"></script>
+<script src="js/three.js"></script>
 <script src="js/three.WindowResize.js"></script>
 <script src="js/OrbitControls.js"></script>
 <script src="js/TrackballControls.js"></script>

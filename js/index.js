@@ -103,6 +103,7 @@ $(document).ready(function (){
           if(checkFile()) {
             var res = parseInt($("#option_resize").find(":selected").val());
             var image = $("#img_name").attr('src');
+            alert(image);
 
             $.post("resize.php",
                     {res: res,
@@ -119,6 +120,7 @@ $(document).ready(function (){
        function(){
          if(checkFile()) {
            var image = $("#img_name").attr('src');
+           alert(image);
            $.post("grayscale.php",
                  {image: image},
                  function(data){
@@ -168,7 +170,7 @@ $(document).ready(function (){
 
               		// Add the camera to the scene.
               		scene.add(camera);
-                  camera.position.set(0, 150, 1500);
+                  camera.position.set(0, 150, 400);
                   camera.lookAt(scene.position);
 
               		// Start the renderer.
@@ -195,30 +197,22 @@ $(document).ready(function (){
               		// add to the scene
               		scene.add(pointLight);
 
-                  //create plane texture
-                  var planeTexture = new THREE.ImageUtils.loadTexture(img);
+                  //create box texture
+                  var boxTexture = new THREE.TextureLoader().load(img);
 
-                  planeTexture.wrapS = THREE.MirroredRepeatWrapping;
-                  planeTexture.wrapT = THREE.MirroredRepeatWrapping;
-                  planeTexture.repeat.set(1,1);
-
-                  // create the plane's material
-              		var planeMaterial =
-              			new THREE.MeshLambertMaterial({
-              				map: planeTexture,
-                      side: THREE.DoubleSide
+                  // create the box's material
+              		var boxMaterial =
+              			new THREE.MeshBasicMaterial({
+              				map: boxTexture
               			});
 
               		// Create a new mesh with
-              		// plane geometry
-                  var planeGeometry = new THREE.PlaneGeometry(img_width, img_height, 10, 10);
-              		var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-                  plane.overdraw = true;
-                  plane.position.set(25,0,0);
-                  plane.rotation.set(0,0,0);
+              		// box geometry
+                  var boxGeometry = new THREE.BoxGeometry(200,200,200);
+              		var box = new THREE.Mesh(boxGeometry, boxMaterial);
 
-              		// add the plne to the scene.
-              		scene.add(plane);
+              		// add the box to the scene.
+              		scene.add(box);
 
               		// Draw!
               		renderer.render(scene, camera);
@@ -263,17 +257,21 @@ $(document).ready(function (){
 });
 
 function previewImage(event) {
+  // window.location.reload();
   var reader = new FileReader();
   reader.onload = function() {
       var output = document.getElementById('img_name');
-      output.src = reader.result;
-      var img_width = output.width;
-      var img_height = output.height;
-      // For proper display of image
-      if (img_height/img_width < (2/3)) {
-          output.width = 600;
-      } else {
-        output.height = 400;
+      //only JPEG files allowed
+      if (validImage(reader.result) === true) {
+        output.src = reader.result;
+        var img_width = output.width;
+        var img_height = output.height;
+        // For proper display of image
+        if (img_height/img_width < (2/3)) {
+            output.width = 600;
+        } else {
+          output.height = 400;
+        }
       }
   };
 
@@ -283,6 +281,16 @@ function previewImage(event) {
 function checkFile(){
   // returns true if something is uploaded
   return $("#img_input").val()!= '';
+}
+//CHecks if the file is JPEG
+function validImage(file){
+  //Checks what position is the text "image/jpeg" is on
+  if (file.indexOf("image/jpeg") < 0){
+    alert("Only JPG files allowed !!!");
+    return false;
+  } else {
+    return true;
+  }
 }
 
 function updateCoords(c) {
