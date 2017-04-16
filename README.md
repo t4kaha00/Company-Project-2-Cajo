@@ -1,6 +1,6 @@
 # Company Oriented Project 2
 
-total hours worked : 114
+total hours worked : 124
 
 # Weekly Report By Harjit
 
@@ -144,9 +144,9 @@ total hours worked : 114
  Passing the image files through different functions is not possible.
  The canvas and the image preview was hindering the back and forth sequential order. Fixed be using a boolean variable. 
 
-4) -BoxGeometry Issues (3 hours)
-   -Three.js library import and Boxgeometry solving(3 hours)
-   -Validating function for the file to check if its JPG ( 4 hours)
-   -Single image file creation and edit (3 hours)
-   -Sequential order implementation (3 hours)
-   -Juggling between canvas and the main image preview (4 hours)
+4) 	BoxGeometry Issues (3 hours)
+   	Three.js library import and Boxgeometry solving(3 hours)
+   	Validating function for the file to check if its JPG ( 4 hours)
+   	Single image file creation and edit (3 hours)
+   	Sequential order implementation (3 hours)
+	Juggling between canvas and the main image preview (4 hours)
