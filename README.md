@@ -1,4 +1,3 @@
-# Cajo
 # Company Oriented Project 2
 
 total hours worked : 114
