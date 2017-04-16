@@ -132,16 +132,21 @@ total hours worked : 114
 	-The image gets rotated after its uploaded.
 	-The aspect ratio should be maintained at every time
 	 unless the user chooses to resize.
-	-The main preview to be updated after every implementation 	 of function.
+	-The main preview to be updated after every implementation of function.
 	-The sequence of image manipulation should be maintained.
 	-The Plane in the 3D canvas needed to be changed to a Cube
 	
-	Well, the rotation problem is weird as the code works fine on my pc. The aspect ratio also is maintained every time. Juha had one specific photo that had the problem with maintaining the aspect ratio He sent me the photo having issues but even the photo work fine on my pc. The aspect ratio is maintained at all times. Now I have to work on the other issues. Well, I went through the initial document and I saw another feature needed to be implemented. It should allow only JPG images to get uploaded. It is done and the code checks throuh the name of the file and uploads only if the extension is jpg. The plane in the canvas is also changed to a box. I am confused if the width and height of the box should be according to the image or not so initially I have made it to be a cube where all sides are equal not depending on the aspect ratio of the image.
+	Well, the rotation problem is weird as the code works fine on my pc. The aspect ratio also is maintained every time. Juha had one specific photo that had the problem with maintaining the aspect ratio He sent me the photo having issues but even the photo work fine on my pc. The aspect ratio is maintained at all times. Now I have to work on the other issues. Well, I went through the initial document and I saw another feature needed to be implemented. It should allow only JPG images to get uploaded. It is done and the code checks throuh the name of the file and uploads only if the extension is jpg. The plane in the canvas is also changed to a box. I am confused if the width and height of the box should be according to the image or not so initially I have made it to be a cube where all sides are equal not depending on the aspect ratio of the image. The sequence has hard to maintain before because the edited image was large and passing it through the functions was not possible. That's why I chose to store the image into the server and retrieve it back instead of passing it. However, As I was recently asked to make it sequential, I still had the same problem of large image file. So this time I approached it in a different way by allowing a single image file to be edited. So, a new image file is created at the beginning and when an image is uploaded, it gets stored to the image file created and all the function use the same file. Even the main preview and the 3D canvas uses the same file. So, this allows the sequential behavior to be implemented properly. Still the juggling between image preview and tha canvas was to be implemented because earlier it would show the canvas the first time but not after that. So, I declare a boolean variable called 'clicked' which is false in the beginning and changes to true when the 3D button is clicked. And the code was modified so that the canvas is visible when the boolean is set to true. So, this made it easy for me to juggle between the image preview and the canvas. Now, i just need to set the value of the variable where needed and it automatically does its work. And the same button for displaying the canvas also hides it. 
 
-2) The sequence of the use of features should be maintained by allowing the edited image to be shown in the main preview.
+2) Everything works fine for me. Waiting for others to try it.
 
-3) The Box geometry was not working and was not accepted as a constructor so I had to import another three.js library for it to work. The extension of the file needed to be checked to see if it is a JPG file or not. I approached it in a simple manner by just checking the string JPEG in the name of the file. It should work fine.
- 
-4) BoxGeometry Issues (3 hours)
-   Three.js library import and Boxgeometry solving(3 hours)
-   Validating function for the file to check if its JPG ( 4 hours)
+3) The Box geometry was not working and was not accepted as a constructor so I had to import another three.js library for it to work. The extension of the file needed to be checked to see if it is a JPG file or not. I approached it in a simple manner by just checking the string JPEG in the name of the file. It should work fine. 
+ Passing the image files through different functions is not possible.
+ The canvas and the image preview was hindering the back and forth sequential order. Fixed be using a boolean variable. 
+
+4) -BoxGeometry Issues (3 hours)
+   -Three.js library import and Boxgeometry solving(3 hours)
+   -Validating function for the file to check if its JPG ( 4 hours)
+   -Single image file creation and edit (3 hours)
+   -Sequential order implementation (3 hours)
+   -Juggling between canvas and the main image preview (4 hours)
